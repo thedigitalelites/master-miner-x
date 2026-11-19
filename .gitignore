@@ -1,0 +1,9 @@
+node_modules/
+dist/
+design-ref/
+.DS_Store
+*.log
+.env*
+*.orig
+*.bak
+*~
