@@ -4997,3 +4997,17 @@ main, .site-footer { position: relative; z-index: 0; }
   from { stroke-dashoffset: 1; }
   to { stroke-dashoffset: 0; }
 }
+/* keep nav labels on one line at mid desktop widths */
+.navbar__link { white-space: nowrap; }
+@media (max-width: 1560px) {
+  .navbar__links { gap: 2px; }
+  .navbar__link { font-size: 0.9375rem; padding-inline: 10px; }
+  .navbar__cta { padding: 0 20px; gap: 12px; font-size: 0.9375rem; height: 46px; }
+}
+@media (max-width: 1200px) {
+  .navbar__link { font-size: 0.875rem; padding-inline: 7px; }
+}
+@media (max-width: 1500px) {
+  .price-card { padding: 72px 48px 64px; }
+  .price-card .check-list li { white-space: normal; font-size: 1.0625rem; }
+}
