@@ -5,7 +5,6 @@ import { Hud, OctBadge, chamfer } from './Hud.jsx';
 import Icon from './Icon.jsx';
 
 const calcMiners = miners.filter((m) => !m.scrypt);
-const TAX_RATE = 0.32;
 const PAYBACK_SCALE = 36; // months shown on the payback bar
 
 const marketDefaults = () => ({
@@ -55,11 +54,6 @@ const resultShape = (w, h) => ({
   accent: [`M${w + 5} 50 L${w + 5} 90`, `M${w + 5} ${h * 0.62} L${w + 5} ${h * 0.7}`],
   late: [`M${w * 0.2} ${h + 0.5} L${w * 0.72} ${h + 0.5}`],
 });
-const taxShape = (w, h) => ({
-  main: chamfer(w, h, [16, 16, 16, 16], 0.75),
-  fill: 'rgba(5, 15, 18, 0.74)',
-  hair: [chamfer(w, h, [12, 12, 12, 12], 10)],
-});
 const btnShape = (w, h) => ({ main: chamfer(w, h, [12, 12, 12, 12], 0.75), fill: 'rgba(6, 20, 23, 0.8)', tracer: false });
 const periodShape = (w, h) => ({ main: chamfer(w, h, [10, 10, 10, 10], 0.75), fill: 'rgba(6, 18, 21, 0.8)', tracer: false });
 
@@ -79,8 +73,6 @@ function NumInput({ value, onChange, step = 'any', disabled }) {
 export default function MiningCalculator() {
   const [setup, setSetup] = useState(setupDefaults());
   const [mkt, setMkt] = useState(marketDefaults());
-  const [tax, setTax] = useState(true);
-  const [showTax, setShowTax] = useState(false);
   const [showMath, setShowMath] = useState(false);
 
   const miner = calcMiners.find((m) => m.id === setup.minerId);
@@ -104,17 +96,15 @@ export default function MiningCalculator() {
     const profit = revenue - hosting - poolFees;
     const btcNet = btcDay * (1 - (+setup.poolFee || 0) / 100);
     const cost = (+setup.unitPrice || 0) * qty;
-    const savings = tax ? cost * TAX_RATE : 0;
     const monthly = profit * DAYS;
-    const paybackBefore = monthly > 0 ? cost / monthly : Infinity;
-    const paybackAfter = monthly > 0 ? (cost - savings) / monthly : Infinity;
+    const payback = monthly > 0 ? cost / monthly : Infinity;
     const share = (v) => (revenue > 0 ? (v / revenue) * 100 : 0);
     return {
-      hashrate, power, revenue, poolFees, hosting, profit, btcNet, cost, savings,
-      paybackBefore, paybackAfter,
+      hashrate, power, revenue, poolFees, hosting, profit, btcNet, cost,
+      payback,
       shares: { hosting: share(hosting), pool: share(poolFees), net: Math.max(0, share(profit)) },
     };
-  }, [setup, mkt, tax, miner]);
+  }, [setup, mkt, miner]);
 
   const months = (v) => (Number.isFinite(v) ? `${v.toFixed(1)} months` : 'Not profitable at these inputs');
   const signed = (v) => <span className={v >= 0 ? 'pos' : 'neg'}>{usd(v)}</span>;
@@ -126,7 +116,6 @@ export default function MiningCalculator() {
           <h2 className="h-section">Bitcoin Mining Calculator</h2>
           <p className="lead">
             Estimate mining profit and hardware payback using Bitcoin price, network difficulty, and your hosting rate.
-            Apply optional equipment tax savings to see how they affect payback.
           </p>
         </header>
 
@@ -222,7 +211,6 @@ export default function MiningCalculator() {
                 onClick={() => {
                   setSetup(setupDefaults());
                   setMkt(marketDefaults());
-                  setTax(true);
                 }}
               >
                 <Icon name="reset" size={20} /> Reset
@@ -232,32 +220,6 @@ export default function MiningCalculator() {
 
           {/* ---------- Results ---------- */}
           <div className="calc__results">
-            <Hud className="calc__panel calc__tax" shape={taxShape}>
-              <div>
-                <h3 className="calc__title">Optional tax benefit</h3>
-                <p className="muted small">
-                  {usd(r.cost * TAX_RATE)} estimated savings toward payback in month 12.
-                </p>
-                <button className="link-btn small" onClick={() => setShowTax((v) => !v)} aria-expanded={showTax}>
-                  <Icon name={showTax ? 'chevronDown' : 'chevronRight'} size={14} /> Tax assumptions · {TAX_RATE * 100}% rate
-                </button>
-                {showTax && (
-                  <p className="muted small calc__expand">
-                    Assumes the full equipment cost is deductible in year one at a {TAX_RATE * 100}% combined rate. Your
-                    own position depends on where you file. Check with your tax advisor.
-                  </p>
-                )}
-              </div>
-              <button
-                className={`switch ${tax ? 'is-on' : ''}`}
-                role="switch"
-                aria-checked={tax}
-                aria-label="Apply tax benefit"
-                onClick={() => setTax((v) => !v)}
-              >
-                <span />
-              </button>
-            </Hud>
 
             <Hud className="calc__panel calc__profit" shape={resultShape}>
               <h3 className="calc__title">
@@ -298,33 +260,27 @@ export default function MiningCalculator() {
                 <p className="mono-label mono-label--muted">Hardware payback snapshot</p>
                 <div className="payback__grid">
                   <div className="payback__box">
-                    <small>{tax ? 'After-tax equipment cost' : 'Equipment cost'}</small>
-                    <b>{usd(r.cost - r.savings)}</b>
-                    {tax && <span className="pos small">{usd(r.savings)} estimated savings</span>}
+                    <small>Equipment cost</small>
+                    <b>{usd(r.cost)}</b>
                   </div>
                   <div className="payback__box payback__box--wide">
                     <small>
-                      <span className="accent">Payback</span> {tax ? 'with estimated tax benefit' : 'before tax benefit'}
+                      <span className="accent">Payback</span> on equipment cost
                     </small>
-                    <b>{months(r.paybackAfter)}</b>
+                    <b>{months(r.payback)}</b>
                     <div className="payback__bar">
-                      <span style={{ width: `${Math.min(100, (r.paybackAfter / PAYBACK_SCALE) * 100)}%` }} />
+                      <span style={{ width: `${Math.min(100, (r.payback / PAYBACK_SCALE) * 100)}%` }} />
                     </div>
                     <div className="payback__scale"><span>0m</span><span>12m</span><span>24m</span><span>36m+</span></div>
                   </div>
                 </div>
-                {tax && (
-                  <p className="muted small">
-                    Before benefit: {months(r.paybackBefore)}. Savings are received in month 12.
-                  </p>
-                )}
                 <button className="link-btn small" onClick={() => setShowMath((v) => !v)} aria-expanded={showMath}>
-                  <Icon name={showMath ? 'chevronDown' : 'chevronRight'} size={14} /> Snapshot assumptions and tax math
+                  <Icon name={showMath ? 'chevronDown' : 'chevronRight'} size={14} /> Snapshot assumptions and math
                 </button>
                 {showMath && (
                   <p className="muted small calc__expand mono">
                     BTC/day = hashrate × 86,400 × subsidy × (1 + tx fees) × uptime ÷ (difficulty × 2³²). Hosting/day =
-                    kW × 24 × rate × uptime. Payback = (cost − tax savings) ÷ monthly profit.
+                    kW × 24 × rate × uptime. Payback = equipment cost ÷ monthly profit.
                   </p>
                 )}
               </div>

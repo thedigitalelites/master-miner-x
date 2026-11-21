@@ -182,14 +182,7 @@ export function useMotion() {
       if (document.hidden) return;
       beat += 1;
       [...document.querySelectorAll(PANELS)].filter((el) => inView(el)).forEach((el, i) => later(() => replay(el, 'is-scan'), i * 280));
-      [...document.querySelectorAll('.badge-oct, .wm-badge')].filter((el) => inView(el)).forEach((el, i) => later(() => replay(el, 'is-ping'), 600 + i * 110));
-      [...document.querySelectorAll('main h2:not(.wm-title), .h-display')].filter((el) => inView(el)).forEach((el) => replay(el, 'is-flash'));
       if (beat % 2 === 0) document.querySelectorAll(COUNTERS).forEach((el) => inView(el, 40) && countUp(el));
-      if (beat % 3 === 0) {
-        [...document.querySelectorAll('[data-reveal]')]
-          .filter((el) => inView(el, 60) && el.matches('.wm-list__row, .compare-list__row, .check-list li, .stat-bar__item, .spec-row'))
-          .forEach((el, i) => later(() => replay(el, 'is-nudge'), i * 90));
-      }
     }, 5000);
 
     // Entrances replay on a timer: every 8s, whatever is on screen plays its
@@ -217,8 +210,6 @@ export function useMotion() {
       ['.steps', '.step', 2200],
       ['.feature-grid', '.feature-card', 1800],
       ['.chips:not(.chips--soft)', '.chip:not(.chip--input)', 1400],
-      ['.faq', '.faq__icon', 1200],
-      ['.stat-bar', '.stat-bar__item', 1600],
       ['.hosting__features', ':scope > *', 1700],
     ];
     const seqTimers = SEQUENCES.map(([group, item, ms]) => {

@@ -38,12 +38,16 @@ function CardFrame({ w, h }) {
         </linearGradient>
       </defs>
       <path d={main} fill="url(#wm-card-fill)" />
+      <path d={main} className="wm-frame__halo" />
       <g className="wm-frame__lines">
         <path d={main} pathLength="1" />
-        <path d={main} pathLength="1" className="wm-frame__tracer" />
         <path d={bracket} pathLength="1" className="wm-frame__late" />
         <path d={tab} pathLength="1" className="wm-frame__late" />
         <path d={`M-5 ${c + 36} L-5 ${c + 96}`} className="wm-frame__accent" />
+      </g>
+      <g className="wm-frame__run">
+        <path d={main} pathLength="1" className="wm-frame__tracer wm-frame__tracer--halo" />
+        <path d={main} pathLength="1" className="wm-frame__tracer" />
       </g>
       <path d="M37 16 L173 16" className="wm-frame__hair" />
       <g className="wm-frame__bars" transform={`translate(${w - 80} ${h - 15})`}>
@@ -62,8 +66,12 @@ function CtaFrame({ w, h }) {
   return (
     <svg className="wm-frame" width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden="true">
       <path d={d} fill="rgba(8, 24, 28, 0.55)" />
+      <path d={d} className="wm-frame__halo" />
       <g className="wm-frame__lines">
         <path d={d} pathLength="1" />
+      </g>
+      <g className="wm-frame__run">
+        <path d={d} pathLength="1" className="wm-frame__tracer wm-frame__tracer--halo" />
         <path d={d} pathLength="1" className="wm-frame__tracer" />
       </g>
     </svg>

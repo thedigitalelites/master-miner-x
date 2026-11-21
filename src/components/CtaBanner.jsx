@@ -1,38 +1,49 @@
 import { Hud } from './Hud.jsx';
 import Icon from './Icon.jsx';
 
-// Wide banner frame: heavy chamfers, the middle of the top and bottom edges
-// raised past the corners, an inset second outline, glowing side bars, tick
-// groups near each corner and hatched runs along the top and bottom.
+// Wide banner frame traced from the reference: chamfered corners with a raised
+// tab ("|||" ticks) near each corner, the middle of the top and bottom edges set
+// in, an inward notch on each side, an inset second outline, glowing side bars,
+// and hatched / dashed runs along the top and bottom.
 function ctaShape(w, h) {
-  const c = 46;
-  const s = 12;
-  const a = w * 0.17;
-  const b = w * 0.83;
-  const main = [
-    `M0.75 ${c + s}`, `L${c} ${s}`, `L${a} ${s}`, `L${a + s} 0.75`, `L${b - s} 0.75`, `L${b} ${s}`, `L${w - c} ${s}`,
-    `L${w - 0.75} ${c + s}`, `L${w - 0.75} ${h - c - s}`, `L${w - c} ${h - s}`, `L${b} ${h - s}`, `L${b - s} ${h - 0.75}`,
-    `L${a + s} ${h - 0.75}`, `L${a} ${h - s}`, `L${c} ${h - s}`, `L0.75 ${h - c - s}`, 'Z',
+  const m = w / 2;
+  const outer = [
+    `M0.75 70`, `L42 20`, `L137 20`, `L150 0.75`, `L225 0.75`, `L238 20`, `L363 20`, `L385 36`,
+    `L${w - 385} 36`, `L${w - 363} 20`, `L${w - 238} 20`, `L${w - 225} 0.75`, `L${w - 150} 0.75`, `L${w - 137} 20`,
+    `L${w - 42} 20`, `L${w - 0.75} 70`, `L${w - 0.75} 132`, `L${w - 34} 160`, `L${w - 34} ${h - 160}`, `L${w - 0.75} ${h - 132}`,
+    `L${w - 0.75} ${h - 70}`, `L${w - 42} ${h - 20}`, `L${w - 137} ${h - 20}`, `L${w - 150} ${h - 0.75}`, `L${w - 225} ${h - 0.75}`,
+    `L${w - 238} ${h - 20}`, `L${w - 363} ${h - 20}`, `L${w - 385} ${h - 36}`, `L385 ${h - 36}`, `L363 ${h - 20}`, `L238 ${h - 20}`,
+    `L225 ${h - 0.75}`, `L150 ${h - 0.75}`, `L137 ${h - 20}`, `L42 ${h - 20}`, `L0.75 ${h - 70}`, `L0.75 ${h - 132}`,
+    `L34 ${h - 160}`, `L34 160`, `L0.75 132`, 'Z',
   ].join(' ');
-  const i = 22;
+  const i = 14;
   const inner = [
-    `M${i} ${c + i}`, `L${c + 4} ${i + 8}`, `L${a + 6} ${i + 8}`, `L${a + 20} ${i}`, `L${b - 20} ${i}`, `L${b - 6} ${i + 8}`,
-    `L${w - c - 4} ${i + 8}`, `L${w - i} ${c + i}`, `L${w - i} ${h - c - i}`, `L${w - c - 4} ${h - i - 8}`, `L${b - 6} ${h - i - 8}`,
-    `L${b - 20} ${h - i}`, `L${a + 20} ${h - i}`, `L${a + 6} ${h - i - 8}`, `L${c + 4} ${h - i - 8}`, `L${i} ${h - c - i}`, 'Z',
+    `M${i} 78`, `L50 ${20 + i}`, `L360 ${20 + i}`, `L382 ${36 + i}`, `L${w - 382} ${36 + i}`, `L${w - 360} ${20 + i}`,
+    `L${w - 50} ${20 + i}`, `L${w - i} 78`, `L${w - i} 138`, `L${w - 46} 166`, `L${w - 46} ${h - 166}`, `L${w - i} ${h - 138}`,
+    `L${w - i} ${h - 78}`, `L${w - 50} ${h - 20 - i}`, `L${w - 360} ${h - 20 - i}`, `L${w - 382} ${h - 36 - i}`,
+    `L382 ${h - 36 - i}`, `L360 ${h - 20 - i}`, `L50 ${h - 20 - i}`, `L${i} ${h - 78}`, `L${i} ${h - 138}`, `L46 ${h - 166}`,
+    `L46 166`, `L${i} 138`, 'Z',
   ].join(' ');
-  const ticks = (x, y) => `M${x} ${y} v6 M${x + 7} ${y} v6 M${x + 14} ${y} v6`;
-  const hatch = (x, y, n) => Array.from({ length: n }, (_, k) => `M${x + k * 6} ${y + 6} L${x + k * 6 + 4} ${y}`).join(' ');
+  const ticks = (x, y) => `M${x} ${y} v6 M${x + 8} ${y} v6 M${x + 16} ${y} v6`;
+  const hatch = (x, y, n) => Array.from({ length: n }, (_, k) => `M${x + k * 6} ${y + 5} L${x + k * 6 + 4} ${y}`).join(' ');
   return {
-    main,
-    fill: 'rgba(3, 10, 12, 0.82)',
-    hair: [inner, ticks(c + 40, s + 6), ticks(w - c - 54, s + 6), ticks(c + 40, h - s - 12), ticks(w - c - 54, h - s - 12)],
-    late: [`M${w * 0.5} 5 L${w * 0.62} 5`, `M${w * 0.68} 5 L${w * 0.72} 5`, `M${w * 0.66} ${h - 5} L${w * 0.72} ${h - 5}`],
-    accent: [`M-5 ${h * 0.28} L-5 ${h * 0.72}`, `M${w + 5} ${h * 0.28} L${w + 5} ${h * 0.72}`],
+    main: outer,
+    fill: 'rgba(3, 10, 12, 0.86)',
+    hair: [
+      inner,
+      ticks(180, 7), ticks(w - 196, 7), ticks(180, h - 13), ticks(w - 196, h - 13),
+      `M22 168 L22 ${h - 168}`, `M${w - 22} 168 L${w - 22} ${h - 168}`,
+    ],
+    late: [`M${m + 273} 16 L${m + 353} 16`, `M${m + 303} ${h - 16} L${m + 368} ${h - 16}`],
+    accent: [`M-3 74 L-3 128`, `M-3 ${h - 128} L-3 ${h - 74}`, `M${w + 3} 74 L${w + 3} 128`, `M${w + 3} ${h - 128} L${w + 3} ${h - 74}`],
     over: (
       <g className="cta-hatch">
-        <path d={hatch(w * 0.56, 2, 14)} />
-        <path d={hatch(w * 0.56, h - 8, 12)} />
-        <path d={`M${w * 0.27} 6 L${w * 0.4} 6`} strokeDasharray="1 2" />
+        <path d={`M400 16 L${m - 30} 16`} className="dots" />
+        <path d={hatch(m + 28, 13, 20)} />
+        <path d={`M${m + 228} 16 L${m + 253} 16 M${m + 383} 16 L${m + 398} 16`} className="dash" />
+        <path d={hatch(m + 28, h - 19, 20)} />
+        <path d={`M${m + 243} ${h - 16} L${m + 258} ${h - 16} M${m + 273} ${h - 16} L${m + 283} ${h - 16} M${m + 383} ${h - 16} L${m + 398} ${h - 16}`} className="dash" />
+        <path d={`M22 168 L22 ${h - 168} M${w - 22} 168 L${w - 22} ${h - 168}`} className="dots" />
       </g>
     ),
   };

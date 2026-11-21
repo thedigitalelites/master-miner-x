@@ -1,6 +1,5 @@
-import { whyHost, stats } from '../data/content.js';
+import { whyHost } from '../data/content.js';
 import { Hud, OctBadge, Eyebrow, chamfer } from './Hud.jsx';
-import { StatIcon } from './BuyHostMine.jsx';
 import Icon from './Icon.jsx';
 
 // "Run the numbers" strip: long chamfered bar, soft corners.
@@ -33,30 +32,6 @@ const featureShape = (w, h) => {
         <circle cx={m - 58} cy={t + 2} r="1.2" />
         <circle cx={m + 52} cy={t - 4} r="1.6" />
         <circle cx={m + 58} cy={t + 2} r="1.2" />
-      </g>
-    ),
-  };
-};
-
-// Stat bar with slanted corner tabs (top right, bottom left).
-const statShape = (w, h) => {
-  const c = 18;
-  return {
-    main: chamfer(w, h, [c, 34, c, 34], 0.75),
-    fill: 'rgba(6, 22, 25, 0.66)',
-    late: [`M${w - 70} 6 L${w - 30} 6 L${w - 8} 28`, `M8 ${h - 28} L30 ${h - 6} L70 ${h - 6}`],
-    over: (
-      <g className="wm-frame__bars">
-        <g transform={`translate(${w - 70} -5)`}>
-          <path d="M5 0 H14 L9 6 H0 Z" opacity="0.5" />
-          <path d="M19 0 H28 L23 6 H14 Z" opacity="0.75" />
-          <path d="M33 0 H47 L42 6 H28 Z" />
-        </g>
-        <g transform={`translate(18 ${h - 1})`}>
-          <path d="M5 0 H14 L9 6 H0 Z" />
-          <path d="M19 0 H28 L23 6 H14 Z" opacity="0.75" />
-          <path d="M33 0 H47 L42 6 H28 Z" opacity="0.5" />
-        </g>
       </g>
     ),
   };
@@ -101,18 +76,6 @@ export default function WhyHost() {
             </Hud>
           ))}
         </div>
-
-        <Hud className="stat-bar stat-bar--tabs" shape={statShape}>
-          {stats.map((s) => (
-            <div className="stat-bar__item" key={s.label}>
-              <StatIcon name={s.icon} />
-              <div>
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            </div>
-          ))}
-        </Hud>
 
         <p className="footnote">
           <strong>New to mining hardware?</strong> See how the current models compare in our{' '}

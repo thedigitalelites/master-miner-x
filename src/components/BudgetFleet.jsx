@@ -97,7 +97,7 @@ export default function BudgetFleet() {
           <Eyebrow>Start with your number</Eyebrow>
           <h2 className="h-section h-section--xl budget__title">
             What does <br className="br-lg" />
-            <span>${num(budget)}</span> <br className="br-lg" />
+            <span className="accent">${num(budget)}</span> <br className="br-lg" />
             buy today?
           </h2>
 

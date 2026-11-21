@@ -43,12 +43,21 @@ export function SvgFrame({ w, h, shape, className = '' }) {
       {s.defs}
       {s.main && <path d={s.main} fill={s.fill || 'rgba(8, 22, 26, 0.55)'} />}
       {s.under}
+      {/* Soft glow as a wide faint stroke: much cheaper to paint than a filter. */}
+      {s.main && <path d={s.main} className="wm-frame__halo" />}
       <g className="wm-frame__lines">
         {s.main && <path d={s.main} pathLength="1" />}
-        {s.main && s.tracer !== false && <path d={s.main} pathLength="1" className="wm-frame__tracer" />}
         {(s.late || []).map((d, i) => <path key={`l${i}`} d={d} pathLength="1" className="wm-frame__late" />)}
         {(s.accent || []).map((d, i) => <path key={`a${i}`} d={d} className="wm-frame__accent" />)}
       </g>
+      {/* The moving light sits outside the filtered group so the glow filter
+          is not re-rasterised every frame; its halo is a wide faint stroke. */}
+      {s.main && s.tracer !== false && (
+        <g className="wm-frame__run">
+          <path d={s.main} pathLength="1" className="wm-frame__tracer wm-frame__tracer--halo" />
+          <path d={s.main} pathLength="1" className="wm-frame__tracer" />
+        </g>
+      )}
       {(s.hair || []).map((d, i) => <path key={`h${i}`} d={d} className="wm-frame__hair" />)}
       {s.bars && (
         <g className="wm-frame__bars" transform={`translate(${s.bars[0]} ${s.bars[1]})`}>

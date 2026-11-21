@@ -179,7 +179,6 @@ export const whyMine = {
   },
 };
 
-export const brands = ['BITMAIN', 'MicroBT', 'canaan', 'Bitdeer', 'Auradine', 'iPollo'];
 
 export const stats = [
   { icon: 'chip', value: '100%', label: 'NVIDIA GPU Powered' },

@@ -19,7 +19,7 @@ function footerShape(w, h) {
   return {
     main,
     fill: 'rgba(4, 13, 16, 0.82)',
-    hair: [inner],
+    hair: [inner, `M${c + 30} 6 L${w * 0.07 - 4} 6`, `M${c + 10} ${h + 10} L${m - 250} ${h + 10}`, `M${m + 250} ${h + 10} L${w - c - 10} ${h + 10}`],
     late: [`M${w * 0.86} 4 L${w - 30} 4 L${w - 4} 30`],
     accent: [`M14 ${h - 70} L36 ${h - 48}`, `M${w - 14} ${h - 70} L${w - 36} ${h - 48}`, `M${w - 24} 30 L${w - 10} 40`, `M24 30 L10 40`],
     over: (
@@ -69,6 +69,10 @@ export default function Footer() {
               <path d="M470 30 H430 L400 50" />
               <path className="b" d="M90 52 H140" />
               <path className="b" d="M560 52 H610" />
+              <path className="bar" d="M150 82 H290 M150 90 H290" />
+              <path className="bar" d="M410 82 H550 M410 90 H550" />
+              <path d="M200 100 H300 L320 112 H380" />
+              <path d="M500 100 H400 L380 112 H320" />
             </svg>
             <svg className="footer-bottom__oct" viewBox="0 0 92 92" aria-hidden="true">
               <polygon points="27,2 65,2 90,27 90,65 65,90 27,90 2,65 2,27" />
