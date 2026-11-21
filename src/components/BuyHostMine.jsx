@@ -168,7 +168,7 @@ export default function BuyHostMine() {
                 <span className="ribbon" aria-hidden="true"><span>Bundles</span></span>
                 <div className="featured-miner__img">
                   <span className="tag">Featured miner</span>
-                  <img src={featured.image} alt={featured.name} loading="lazy" />
+                  <img src="img/miner-hydro-featured.webp" alt={featured.name} width="560" height="500" loading="lazy" decoding="async" />
                 </div>
                 <div className="featured-miner__body">
                   <p className="mono-label mono-label--muted">{featured.brand}</p>

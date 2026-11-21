@@ -5311,3 +5311,46 @@ main > section:not(.hero),
 .hosting__features li.is-lit .feature-chip > .wm-frame .wm-frame__halo,
 .faq__item.is-open > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.34); }
 .footer-bottom__oct polygon:not(.i) { stroke-width: 3.5; }
+
+/* ---- featured miner: clean product shot on the dark card ---- */
+.featured-miner__img { background: #071a1d; }
+.featured-miner__img img {
+  object-fit: contain;
+  object-position: center;
+  padding: 10px 6px 4px;
+  mask-image: radial-gradient(ellipse 70% 72% at 50% 52%, #000 70%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 72% at 50% 52%, #000 70%, transparent 100%);
+}
+
+/* ---- page background: the client's circuit artwork, fixed behind content ---- */
+body { background-image: none; background-color: #03080a; }
+#root::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: url('../img/bg-circuit.webp') center / cover no-repeat;
+  opacity: 0.85;
+}
+.bg-pulses { display: none; }
+#root::before { opacity: 0.42; }
+#root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 30%, rgba(3, 8, 10, 0.75) 100%);
+}
+.featured-miner__name { padding-right: 46px; }
+.featured-miner .spec-row { grid-template-columns: repeat(3, minmax(0, auto)); gap: 4px 14px; justify-content: start; }
+.featured-miner__btns { flex-wrap: wrap; }
+.featured-miner__body { min-width: 0; }
+.step__media { height: auto; min-height: 250px; }
+.step__photo img { height: 234px; }
+.featured-miner__img { display: flex; align-items: center; justify-content: center; }
+.featured-miner__img img { height: auto; max-height: 230px; }
+.step__dash .dash { min-height: 250px; }
+.featured-miner__btns .pill-btn { height: 34px; font-size: 0.75rem; }
+@media (max-width: 720px) { .wm-head__aside { gap: 18px; min-width: 0; } .wm-head__aside p { min-width: 0; } }
