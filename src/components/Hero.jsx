@@ -32,7 +32,16 @@ export default function Hero() {
           </div>
         </div>
         <div className="hero__media" aria-hidden="true">
-          <img src="img/hero-asic.jpg" alt="" width="977" height="853" />
+          <img
+            src="img/hero-asic.webp"
+            srcSet="img/hero-asic-640.webp 640w, img/hero-asic.webp 977w"
+            sizes="(max-width: 1024px) 92vw, 52vw"
+            alt=""
+            width="977"
+            height="853"
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
       </div>
       <Ticker />

@@ -132,7 +132,7 @@ export default function BudgetFleet() {
           </div>
 
           <Hud className="stock-card" shape={(w, h) => ({ main: rounded(w, h, 26, 0.75), fill: 'rgba(5, 16, 18, 0.7)' })}>
-            <img src="img/machines-strip.jpg" alt="A selection of in-stock ASIC miners" loading="lazy" />
+            <img src="img/machines-strip.webp" alt="A selection of in-stock ASIC miners" loading="lazy" />
             <div className="stock-card__row">
               <div>
                 <p className="stock-card__count">

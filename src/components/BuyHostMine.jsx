@@ -194,7 +194,7 @@ export default function BuyHostMine() {
                 </div>
               </div>
               <Hud className="step__media step__photo" shape={photoShape}>
-                <img src="img/deploy.jpg" alt="Pallet of miners being moved into the facility" loading="lazy" />
+                <img src="img/deploy.webp" alt="Pallet of miners being moved into the facility" loading="lazy" />
               </Hud>
             </li>
             <li className="step">

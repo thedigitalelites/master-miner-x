@@ -16,7 +16,7 @@ export default function RepairExplorer() {
         />
 
         <figure className="repair__figure">
-          <img src="img/repair-illustration.jpg" alt="Exploded view of an ASIC miner: fans, chassis, hashboards, control board and power supply" loading="lazy" />
+          <img src="img/repair-illustration.webp" srcSet="img/repair-illustration-800.webp 800w, img/repair-illustration.webp 1555w" sizes="(max-width: 900px) 100vw, 1555px" width="1555" height="577" decoding="async" alt="Exploded view of an ASIC miner: fans, chassis, hashboards, control board and power supply" loading="lazy" />
           {repairParts.map((p) => (
             <button
               key={p.id}

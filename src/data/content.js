@@ -53,7 +53,7 @@ export const miners = [
     tag: 'Most purchased',
     bundles: true,
     available: true,
-    image: 'img/miner-hydro.jpg',
+    image: 'img/miner-hydro.webp',
   },
   {
     id: 's23-hydro',
@@ -67,7 +67,7 @@ export const miners = [
     monthly: 350,
     tag: 'Most profitable',
     available: true,
-    image: 'img/miner-hydro.jpg',
+    image: 'img/miner-hydro.webp',
   },
   {
     id: 's21-xp',
@@ -81,7 +81,7 @@ export const miners = [
     monthly: 99,
     available: true,
     marketplace: true,
-    image: 'img/miner-air.jpg',
+    image: 'img/miner-air.webp',
   },
   {
     id: 'l9',
@@ -98,7 +98,7 @@ export const miners = [
     available: true,
     scrypt: true,
     revenuePerDay: 6.47,
-    image: 'img/miner-air.jpg',
+    image: 'img/miner-air.webp',
   },
   {
     id: 's21-pro',
@@ -111,7 +111,7 @@ export const miners = [
     price: 3650,
     monthly: 85,
     available: false,
-    image: 'img/miner-air.jpg',
+    image: 'img/miner-air.webp',
   },
   {
     id: 's21e-xp-hyd',
@@ -124,7 +124,7 @@ export const miners = [
     price: 5600,
     monthly: 130,
     available: false,
-    image: 'img/miner-hydro.jpg',
+    image: 'img/miner-hydro.webp',
   },
   {
     id: 'm63s',
@@ -137,7 +137,7 @@ export const miners = [
     price: 6900,
     monthly: 160,
     available: false,
-    image: 'img/miner-hydro.jpg',
+    image: 'img/miner-hydro.webp',
   },
   {
     id: 'a1566',
@@ -150,7 +150,7 @@ export const miners = [
     price: 2950,
     monthly: 69,
     available: false,
-    image: 'img/miner-air.jpg',
+    image: 'img/miner-air.webp',
   },
 ];
 
