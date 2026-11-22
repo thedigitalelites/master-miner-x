@@ -5511,3 +5511,21 @@ body { background-image: none; background-color: #03080a; }
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent) !important;
   }
 }
+
+/* ---- calculator borders, matched to the client's calculator design ---- */
+#calculator .calc__panel > .wm-frame .wm-frame__lines { stroke: rgba(96, 214, 202, 0.5); stroke-width: 1.2; }
+#calculator .calc__panel > .wm-frame .wm-frame__late { stroke: #7ff0e4; stroke-width: 2.5; }
+#calculator .period > .wm-frame .wm-frame__lines { stroke: rgba(96, 214, 202, 0.55); stroke-width: 1; }
+#calculator .period > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.1); }
+#calculator .calc-btn > .wm-frame .wm-frame__lines { stroke: rgba(110, 236, 224, 0.7); stroke-width: 1.2; }
+.calc-field input,
+.calc-field select { border-color: rgba(96, 214, 202, 0.22); background: rgba(2, 10, 12, 0.6); border-radius: 3px; }
+.calc-field input:focus,
+.calc-field select:focus { border-color: rgba(96, 214, 202, 0.7); }
+.calc__group { border-color: rgba(96, 214, 202, 0.18); border-radius: 4px; }
+.dist-legend div,
+.payback__box { border-color: rgba(96, 214, 202, 0.22); border-radius: 4px; }
+#calculator .period > .wm-frame .wm-frame__halo { display: none; }
+#calculator .period > .wm-frame .wm-frame__lines { stroke: rgba(96, 214, 202, 0.45) !important; stroke-width: 1 !important; filter: none !important; }
+.calc-field input,
+.calc-field select { background: rgba(8, 22, 25, 0.75); }

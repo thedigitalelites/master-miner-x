@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { market, miners } from '../data/content.js';
 import { btcPerDay, usd, num, DAYS } from '../lib/mining.js';
-import { Hud, OctBadge, chamfer } from './Hud.jsx';
+import { Hud, OctBadge, chamfer, rounded } from './Hud.jsx';
 import Icon from './Icon.jsx';
 
 const calcMiners = miners.filter((m) => !m.scrypt);
@@ -33,29 +33,27 @@ function Field({ label, icon, children, hint }) {
   );
 }
 
-// ---- frame shapes ----
-// Main input panel: chamfered, with a bright bracket lifting off the top-left corner.
+// ---- frame shapes (traced from the client's calculator design) ----
+// Main input panel: single thin outline with small corner cuts and a bright
+// accent on the top-left corner.
 const setupShape = (w, h) => ({
-  main: chamfer(w, h, [22, 22, 22, 22], 0.75),
+  main: chamfer(w, h, [12, 8, 12, 8], 0.75),
   fill: 'rgba(5, 15, 18, 0.74)',
-  hair: [chamfer(w, h, [16, 16, 16, 16], 14)],
-  accent: [`M-6 70 L-6 26 L18 2`, `M${w + 5} ${h * 0.42} L${w + 5} ${h * 0.5}`],
-  late: [`M${w * 0.62} ${h + 0.5} L${w - 30} ${h + 0.5}`],
+  late: [`M2 70 L2 12 L12 2 L${w * 0.3} 2`],
 });
-// Result panels: chamfered with small raised tabs on the top edge and glowing side bars.
+// Result panel: single thin outline, a short raised tab on the top edge and
+// glowing bars on the right side.
 const resultShape = (w, h) => ({
   main: [
-    `M0.75 22`, `L22 0.75`, `L${w * 0.17} 0.75`, `L${w * 0.17 + 6} -5`, `L${w * 0.35} -5`, `L${w * 0.35 + 6} 0.75`,
-    `L${w * 0.75} 0.75`, `L${w * 0.75 + 6} -5`, `L${w * 0.86} -5`, `L${w * 0.86 + 6} 0.75`, `L${w - 22} 0.75`,
-    `L${w - 0.75} 22`, `L${w - 0.75} ${h - 22}`, `L${w - 22} ${h - 0.75}`, `L22 ${h - 0.75}`, `L0.75 ${h - 22}`, 'Z',
+    `M0.75 10`, `L10 0.75`, `L${w * 0.68} 0.75`, `L${w * 0.68 + 5} -4`, `L${w * 0.86} -4`, `L${w * 0.86 + 5} 0.75`,
+    `L${w - 10} 0.75`, `L${w - 0.75} 10`, `L${w - 0.75} ${h - 10}`, `L${w - 10} ${h - 0.75}`, `L10 ${h - 0.75}`, `L0.75 ${h - 10}`, 'Z',
   ].join(' '),
   fill: 'rgba(5, 15, 18, 0.74)',
-  hair: [chamfer(w, h, [16, 16, 16, 16], 12)],
-  accent: [`M${w + 5} 50 L${w + 5} 90`, `M${w + 5} ${h * 0.62} L${w + 5} ${h * 0.7}`],
-  late: [`M${w * 0.2} ${h + 0.5} L${w * 0.72} ${h + 0.5}`],
+  accent: [`M${w + 4} 40 L${w + 4} 80`, `M${w + 4} ${h * 0.68} L${w + 4} ${h * 0.76}`],
+  late: [`M${w * 0.15} ${h + 0.5} L${w * 0.55} ${h + 0.5}`],
 });
-const btnShape = (w, h) => ({ main: chamfer(w, h, [12, 12, 12, 12], 0.75), fill: 'rgba(6, 20, 23, 0.8)', tracer: false });
-const periodShape = (w, h) => ({ main: chamfer(w, h, [10, 10, 10, 10], 0.75), fill: 'rgba(6, 18, 21, 0.8)', tracer: false });
+const btnShape = (w, h) => ({ main: rounded(w, h, 6, 0.75), fill: 'rgba(6, 20, 23, 0.8)', tracer: false });
+const periodShape = (w, h) => ({ main: chamfer(w, h, [8, 8, 8, 8], 0.75), fill: 'rgba(6, 18, 21, 0.8)', tracer: false });
 
 function NumInput({ value, onChange, step = 'any', disabled }) {
   return (
