@@ -11,27 +11,27 @@ const ctaShape = (w, h) => ({
 // Calculator button: angled octagon outline.
 const btnShape = (w, h) => ({ main: chamfer(w, h, [16, 16, 16, 16], 0.75), fill: 'rgba(5, 16, 18, 0.9)', tracer: false });
 
-// Feature card: chamfered body, a recessed tab under the icon on the top
-// edge, and a dashed rule along the bottom.
+// Feature card (traced from the reference): straight top edge broken around
+// the icon with a short slant into it, small corner cuts, and a dashed rule
+// along the bottom.
 const featureShape = (w, h) => {
   const t = 30;
-  const c = 16;
+  const c = 12;
   const m = w / 2;
+  const g = 40;
   return {
     main: [
-      `M0.75 ${t + c}`, `L${c} ${t}`, `L${m - 118} ${t}`, `L${m - 104} ${t + 12}`, `L${m - 44} ${t + 12}`,
-      `M${m + 44} ${t + 12}`, `L${m + 104} ${t + 12}`, `L${m + 118} ${t}`, `L${w - c} ${t}`, `L${w - 0.75} ${t + c}`,
-      `L${w - 0.75} ${h - c}`, `L${w - c} ${h - 0.75}`, `L${c} ${h - 0.75}`, `L0.75 ${h - c}`, `L0.75 ${t + c}`,
+      `M${m - g} ${t + 4}`, `L${m - g - 10} ${t}`, `L${c} ${t}`, `L0.75 ${t + c}`, `L0.75 ${h - c}`, `L${c} ${h - 0.75}`,
+      `L${w - c} ${h - 0.75}`, `L${w - 0.75} ${h - c}`, `L${w - 0.75} ${t + c}`, `L${w - c} ${t}`, `L${m + g + 10} ${t}`, `L${m + g} ${t + 4}`,
     ].join(' '),
     fill: 'rgba(6, 18, 21, 0.62)',
-    late: [`M${m - 118} ${t} L${m - 44} ${t}`, `M${m + 44} ${t} L${m + 118} ${t}`],
-    hair: [`M${w * 0.15} ${h - 14} L${w * 0.15 + 10} ${h - 14} M${w * 0.15 + 18} ${h - 14} L${w * 0.15 + 24} ${h - 14}`, `M${w * 0.24} ${h - 14} L${w * 0.82} ${h - 14}`, `M${w * 0.86} ${h - 14} L${w * 0.89} ${h - 14}`],
+    hair: [`M${w * 0.15} ${h - 14} L${w * 0.15 + 8} ${h - 14} M${w * 0.15 + 14} ${h - 14} L${w * 0.15 + 20} ${h - 14}`, `M${w * 0.24} ${h - 14} L${w * 0.82} ${h - 14}`, `M${w * 0.86} ${h - 14} L${w * 0.89} ${h - 14}`],
     over: (
       <g className="wm-frame__dots">
-        <circle cx={m - 52} cy={t - 4} r="1.6" />
-        <circle cx={m - 58} cy={t + 2} r="1.2" />
-        <circle cx={m + 52} cy={t - 4} r="1.6" />
-        <circle cx={m + 58} cy={t + 2} r="1.2" />
+        <circle cx={m - g - 18} cy={t - 4} r="1.4" />
+        <circle cx={m - g - 12} cy={t - 4} r="1.4" />
+        <circle cx={m + g + 12} cy={t - 4} r="1.4" />
+        <circle cx={m + g + 18} cy={t - 4} r="1.4" />
       </g>
     ),
   };

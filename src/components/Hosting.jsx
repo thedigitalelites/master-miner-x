@@ -2,41 +2,42 @@ import { hostingFeatures, hostingIncludes } from '../data/content.js';
 import { Hud, OctBadge, Eyebrow, chamfer } from './Hud.jsx';
 import Icon from './Icon.jsx';
 
-// Feature tile: chamfered, a raised tab along the top and a glowing foot on the left.
-const chipShape = (w, h) => ({
-  main: [
-    `M0.75 18`, `L10 8`, `L${w * 0.22} 8`, `L${w * 0.22 + 8} 0.75`, `L${w * 0.82} 0.75`, `L${w * 0.82 + 8} 8`,
-    `L${w - 10} 8`, `L${w - 0.75} 18`, `L${w - 0.75} ${h - 14}`, `L${w - 14} ${h - 0.75}`, `L14 ${h - 0.75}`, `L0.75 ${h - 14}`, 'Z',
-  ].join(' '),
-  fill: 'rgba(6, 18, 21, 0.72)',
-  late: [`M3 ${h - 1} L${w * 0.25} ${h - 1}`, `M${w - 1} ${h - 30} L${w - 1} ${h - 14}`],
-  hair: [`M${w * 0.22 + 14} 5 L${w * 0.5} 5`],
-});
-
-// Price card: heavy chamfers, a raised tab across the top, an inset inner
-// frame with a step under the label, and glowing bars on the edges.
-const priceShape = (w, h) => {
-  const c = 44;
-  const a = w * 0.3;
-  const b = w * 0.76;
-  const i = 38;
-  const ic = 28;
+// Feature tile (traced from the reference): the top edge is highest on the
+// left third, dips across the middle and steps half way back up on the right;
+// glowing segments on the top-left, bottom-left and lower right side.
+const chipShape = (w, h) => {
+  const c = 15;
+  const a = w * 0.31;
+  const b = w * 0.8;
   return {
     main: [
-      `M0.75 ${c + 10}`, `L${c} 10`, `L${a} 10`, `L${a + 10} 0.75`, `L${b} 0.75`, `L${b + 10} 10`, `L${w - c} 10`,
-      `L${w - 0.75} ${c + 10}`, `L${w - 0.75} ${h - c}`, `L${w - c} ${h - 0.75}`, `L${c} ${h - 0.75}`, `L0.75 ${h - c}`, 'Z',
+      `M0.75 ${c}`, `L${c} 0.75`, `L${a} 0.75`, `L${a + 14} 12`, `L${b} 12`, `L${b + 6} 7`, `L${w - 9} 7`, `L${w - 0.75} ${c}`,
+      `L${w - 0.75} ${h - c}`, `L${w - c} ${h - 0.75}`, `L${c} ${h - 0.75}`, `L0.75 ${h - c}`, 'Z',
+    ].join(' '),
+    fill: 'rgba(6, 18, 21, 0.72)',
+    late: [`M${c + 2} 2 L${a - 2} 2`, `M${c} ${h - 1.5} L${w * 0.3} ${h - 1.5}`, `M${w - 1.5} ${h * 0.6} L${w - 1.5} ${h - c - 2}`],
+  };
+};
+
+// Price card (traced from the reference): high corners with the middle of the
+// top and bottom edges set in, a glowing bar in each dip, an inset second
+// outline, and glowing bars on the sides.
+const priceShape = (w, h) => {
+  const c = 44;
+  const a = w * 0.34;
+  const b = w * 0.74;
+  const d = 12;
+  const i = 30;
+  return {
+    main: [
+      `M0.75 ${c}`, `L${c} 0.75`, `L${a} 0.75`, `L${a + d} ${d}`, `L${b - d} ${d}`, `L${b} 0.75`, `L${w - c} 0.75`, `L${w - 0.75} ${c}`,
+      `L${w - 0.75} ${h - c}`, `L${w - c} ${h - 0.75}`, `L${b} ${h - 0.75}`, `L${b - d} ${h - d}`, `L${a + d} ${h - d}`, `L${a} ${h - 0.75}`,
+      `L${c} ${h - 0.75}`, `L0.75 ${h - c}`, 'Z',
     ].join(' '),
     fill: 'rgba(5, 15, 18, 0.78)',
-    hair: [
-      [
-        `M${i} ${i + ic + 14}`, `L${i + ic} ${i + 14}`, `L${w * 0.44} ${i + 14}`, `L${w * 0.44 + 18} ${i + 32}`, `L${w * 0.64} ${i + 32}`,
-        `L${w * 0.64 + 18} ${i + 14}`, `L${w - i - ic} ${i + 14}`, `L${w - i} ${i + ic + 14}`, `L${w - i} ${h - i - ic}`,
-        `L${w - i - ic} ${h - i}`, `L${w * 0.62} ${h - i}`, `L${w * 0.6} ${h - i + 8}`, `L${w * 0.4} ${h - i + 8}`, `L${w * 0.38} ${h - i}`,
-        `L${i + ic} ${h - i}`, `L${i} ${h - i - ic}`, 'Z',
-      ].join(' '),
-    ],
-    late: [`M${w * 0.32} 4 L${w * 0.68} 4`, `M${w * 0.3} ${h - 4} L${w * 0.7} ${h - 4}`],
-    accent: [`M${w + 4} ${h * 0.32} L${w + 4} ${h * 0.6}`, `M-4 ${h * 0.25} L-4 ${h * 0.35}`],
+    hair: [chamfer(w, h, [c - 12, c - 12, c - 12, c - 12], i)],
+    late: [`M${w * 0.36} ${d + 4} L${w * 0.61} ${d + 4}`, `M${w * 0.32} ${h - d - 4} L${w * 0.58} ${h - d - 4}`],
+    accent: [`M${w + 4} ${h * 0.3} L${w + 4} ${h * 0.62}`, `M-4 ${h * 0.3} L-4 ${h * 0.4}`],
   };
 };
 
@@ -67,7 +68,7 @@ export default function Hosting() {
             {hostingFeatures.map(([icon, label]) => (
               <li key={label}>
                 <Hud className="feature-chip" shape={chipShape}>
-                  <OctBadge size={56}><Icon name={icon} size={30} strokeWidth={1.3} /></OctBadge>
+                  <OctBadge size={60}><Icon name={icon} size={34} strokeWidth={1.4} /></OctBadge>
                   <span>{label}</span>
                 </Hud>
               </li>

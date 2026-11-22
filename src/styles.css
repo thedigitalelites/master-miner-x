@@ -5489,3 +5489,25 @@ body { background-image: none; background-color: #03080a; }
 }
 @media (min-width: 1240px) { .footer-panel__brand .mono { font-size: 0.75rem; letter-spacing: 0.02em; } }
 @media (min-width: 1240px) { .footer-panel__brand { min-width: 0; padding-right: 20px; } .footer-panel__brand .muted { max-width: 22em; } }
+
+/* ---- borders re-traced from the reference ---- */
+.feature-chip .wm-badge svg { fill: transparent !important; stroke: rgba(110, 236, 224, 0.75) !important; stroke-width: 1.3; }
+.feature-chip .wm-badge { color: #8ff5ea; }
+.feature-chip > .wm-frame .wm-frame__lines { stroke: rgba(96, 214, 202, 0.5); }
+.feature-chip > .wm-frame .wm-frame__late { stroke: #7ff0e4; stroke-width: 2.5; }
+.steps > .wm-frame .wm-frame__lines { stroke: rgba(96, 214, 202, 0.45); }
+.feature-card > .wm-frame .wm-frame__lines { stroke: rgba(110, 236, 224, 0.7); }
+/* sharper frame artwork on high-density screens */
+@media (min-width: 1240px) and (min-resolution: 1.5dppx) {
+  .motion-on .cta.is-scan::after,
+  .cta::after { background-image: url('../img/cta-frame@2x.webp') !important; }
+  .site-footer .footer-wrap::before { border-image: url('../img/footer-frame@2x.webp') 200 300 280 fill / 100px 150px 140px stretch; }
+  .site-footer .footer-wrap::after { background-image: url('../img/footer-center@2x.webp'); background-size: 940px 200px; }
+}
+@media (min-width: 1240px) {
+  .cta::before {
+    inset: 7% 3.5%;
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent) !important;
+  }
+}

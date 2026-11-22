@@ -18,9 +18,8 @@ export function StatIcon({ name }) {
 // ---- frame shapes (fixed-size corners at any width) ----
 const roundShape = (r, fill) => (w, h) => ({ main: rounded(w, h, r, 0.75), fill });
 const stepsShape = (w, h) => ({
-  main: chamfer(w, h, [26, 26, 26, 26], 0.75),
+  main: rounded(w, h, 14, 0.75),
   fill: 'rgba(7, 20, 23, 0.55)',
-  late: [`M${w * 0.42} ${h + 0.5} L${w * 0.58} ${h + 0.5}`],
 });
 const minerShape = (w, h) => ({
   main: chamfer(w, h, [14, 0, 14, 14], 0.75),
