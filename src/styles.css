@@ -6382,3 +6382,19 @@ main > section { position: relative; }
   #hosting .quote-btn > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.3); stroke-width: 10; }
   #hosting .price-card .check-list .icon { color: #9ff7ee; }
 }
+@media (min-width: 1025px) {
+  #hosting .price-card__value { font-size: calc(110 * var(--h9)); line-height: calc(110 * var(--h9)); margin: 0 0 calc(22 * var(--h9)); }
+  #hosting .price-card__value span { font-size: calc(28 * var(--h9)); margin-left: calc(20 * var(--h9)); }
+  #hosting .price-card .check-list { row-gap: calc(18 * var(--h9)); margin-bottom: calc(46 * var(--h9)); }
+  #hosting .feature-chip .wm-badge { width: calc(66 * var(--h9)) !important; height: calc(66 * var(--h9)) !important; }
+  #hosting .feature-chip .wm-badge .icon { width: calc(46 * var(--h9)); height: calc(46 * var(--h9)); }
+}
+@media (min-width: 1025px) {
+  #hosting .price-card__value { margin-top: calc(22 * var(--h9)); margin-bottom: calc(10 * var(--h9)); display: flex; align-items: baseline; }
+  #hosting .price-card__value span { margin-left: calc(28 * var(--h9)); position: relative; top: calc(2 * var(--h9)); }
+  #hosting .price-card .rule-dot { margin-bottom: calc(12 * var(--h9)); }
+}
+@media (min-width: 1025px) {
+  #hosting .price-card { top: calc(209 * var(--h9)); }
+  #hosting .price-card .check-list { margin-bottom: calc(33 * var(--h9)); }
+}
