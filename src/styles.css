@@ -6162,3 +6162,22 @@ main > section { position: relative; }
   #repair { background: #010a0d url('../img/bg-repair.webp') top left / 100% auto no-repeat; }
   #faq { background: #011419 url('../img/bg-faq.webp') top left / 100% auto no-repeat; }
 }
+/* Budget: the reference sets the title and the fleet figures in Oxanium */
+#budget { --title-font: 'Oxanium', sans-serif; --title-weight: 500; --title-track: -0.025em; }
+@media (min-width: 1025px) {
+  #budget h2.h-section { font-size: calc(78 * var(--b)); line-height: calc(91 * var(--b)); }
+  #budget .fleet-card__value { font-family: 'Oxanium', sans-serif; font-weight: 500; font-size: calc(52 * var(--b)); letter-spacing: 0.01em; word-spacing: 0.18em; }
+  #budget .fleet-card__notes { font-family: 'Oxanium', sans-serif; font-weight: 400; font-size: calc(18 * var(--b)); }
+  #budget .stock-card__count .accent, #budget .stepper output { font-family: 'Oxanium', sans-serif; font-weight: 500; }
+}
+#budget { --title-track: 0; }
+@media (min-width: 1025px) {
+  #budget h2.h-section { font-size: calc(80 * var(--b)); }
+  #budget .fleet-card__value { font-size: calc(59 * var(--b)); }
+  #budget .fleet-card__notes { font-size: calc(19 * var(--b)); }
+}
+@media (min-width: 1025px) {
+  #budget .eyebrow { margin-bottom: calc(34 * var(--b)); }
+  #budget h2.h-section { margin-bottom: calc(21 * var(--b)); }
+  #budget .fleet-card__value { font-size: calc(62 * var(--b)); }
+}
