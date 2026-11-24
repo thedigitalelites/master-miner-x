@@ -13,7 +13,7 @@ function MinerCard({ miner, rate }) {
         {miner.tag && <span className="tag">{miner.tag}</span>}
         {miner.bundles && <span className="ribbon ribbon--corner" aria-hidden="true"><span>Bundles</span></span>}
         {!miner.available && <span className="tag tag--muted">Ships next batch</span>}
-        <img src={miner.image} alt={miner.name} loading="lazy" />
+        <img src={miner.cooling === 'Hydro' ? 'img/card-hydro.webp' : 'img/card-air.webp'} alt={miner.name} width="411" height="231" loading="lazy" decoding="async" />
       </div>
       <div className="miner-card__body">
         <p className="mono-label mono-label--muted">{miner.brand}</p>
