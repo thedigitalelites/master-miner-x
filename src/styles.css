@@ -6113,3 +6113,52 @@ main > section { position: relative; }
 @media (min-width: 1025px) {
   #budget { background: #011214 url('../img/bg-budget.webp') top left / 100% auto no-repeat; }
 }
+
+/* =========================================================
+   Hero — composed from reference 01 (1926 x 1065) and scaled by
+   --h = min(width / 1926, height / 1065) so it always fits one screen.
+   ========================================================= */
+@media (min-width: 1025px) {
+  .hero {
+    --h: min(calc(100 * var(--vw, 1vw) / 1926), calc(100 * var(--vh, 1vh) / 1065));
+    height: calc(1065 * var(--h));
+    margin-top: 0;
+    padding: 0;
+    display: block;
+    background: #01080b url('../img/bg-hero.webp') top left / calc(1926 * var(--h)) auto no-repeat;
+  }
+  .hero .container.hero__grid { position: absolute; inset: 0; display: block; padding: 0; max-width: none; min-height: 0; }
+  .hero__copy { position: absolute; left: calc(143 * var(--h)); top: calc(234 * var(--h)); width: calc(800 * var(--h)); padding: 0; max-width: none; }
+  .hero .pill { margin-left: calc(4 * var(--h)); height: calc(43 * var(--h)); padding: 0 calc(18 * var(--h)); gap: calc(14 * var(--h)); font-size: calc(13.4 * var(--h)); border-radius: calc(10 * var(--h)); }
+  .hero .pill__dot { width: calc(8 * var(--h)); height: calc(8 * var(--h)); }
+  .hero .h-display { font-size: calc(71 * var(--h)); line-height: calc(78 * var(--h)); margin: calc(5 * var(--h)) 0 0; max-width: none; }
+  .hero__text { font-size: calc(17.6 * var(--h)); line-height: calc(27.7 * var(--h)); max-width: none; margin-top: calc(26 * var(--h)); }
+  .hero__text + .hero__text { margin-top: calc(18 * var(--h)); }
+  .hero .btn-row { margin-top: calc(48 * var(--h)); gap: calc(18 * var(--h)); }
+  .hero .btn { min-height: calc(63 * var(--h)); height: calc(63 * var(--h)); padding: 0 calc(30 * var(--h)); font-size: calc(19 * var(--h)); gap: calc(20 * var(--h)); border-radius: calc(10 * var(--h)); }
+  .hero .btn .icon { width: calc(19 * var(--h)); height: calc(19 * var(--h)); }
+  .hero__media { position: absolute !important; right: calc(100% - 1926 * var(--h)); top: calc(130 * var(--h)); width: calc(977 * var(--h)); margin: 0; }
+  .hero__media img { width: 100%; height: auto; max-height: none; animation: none; mask-image: none; -webkit-mask-image: none; }
+  .hero__media::before, .hero__media::after { display: none; }
+  .hero > .ticker { position: absolute; left: 0; right: 0; bottom: 0; height: calc(55 * var(--h)); }
+  .hero .particles { display: none; }
+}
+@media (min-width: 1025px) { .hero { margin-top: -91px; } }
+.navbar__logo { flex: none; }
+.navbar__logo img { width: auto; max-width: none; }
+@media (min-width: 1025px) {
+  .hero .h-display { white-space: nowrap; }
+  .hero__text { font-size: calc(18.85 * var(--h)); white-space: nowrap; }
+}
+@media (min-width: 1025px) { .hero .btn { font-size: calc(17.6 * var(--h)); padding: 0 calc(26 * var(--h)); gap: calc(18 * var(--h)); } .hero .btn-row { margin-top: calc(43 * var(--h)); } }
+@media (min-width: 1025px) { .hero__media { right: 0; } }
+@media (min-width: 1025px) { .hero { background-position: right top; } }
+
+/* section backgrounds taken from each reference (foreground removed) */
+@media (min-width: 1025px) {
+  #why-mine { background: #011214 url('../img/bg-why-mine.webp') top left / 100% auto no-repeat; }
+  #buy-host-mine { background: #02141a url('../img/bg-bhm.webp') top left / 100% auto no-repeat; }
+  #hosting { background: #010d10 url('../img/bg-hosting.webp') top left / 100% auto no-repeat; }
+  #repair { background: #010a0d url('../img/bg-repair.webp') top left / 100% auto no-repeat; }
+  #faq { background: #011419 url('../img/bg-faq.webp') top left / 100% auto no-repeat; }
+}

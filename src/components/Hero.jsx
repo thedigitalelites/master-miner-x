@@ -14,13 +14,14 @@ export default function Hero() {
             infrastructure <span className="accent">built for <br className="br-lg" />performance</span>
           </h1>
           <p className="hero__text">
-            Master Miner X provides end-to-end cryptocurrency mining solutions, helping individuals, businesses,
-            and institutional investors build profitable and scalable mining operations.
+            Master Miner X provides end-to-end cryptocurrency mining solutions, helping <br className="br-lg" />
+            individuals, businesses, and institutional investors build profitable and <br className="br-lg" />
+            scalable mining operations.
           </p>
           <p className="hero__text">
-            From ASIC procurement and managed hosting to custom mining farm development, we deliver
-            enterprise-grade infrastructure designed to maximize uptime, operational efficiency, and long-term
-            performance.
+            From ASIC procurement and managed hosting to custom mining farm <br className="br-lg" />
+            development, we deliver enterprise-grade infrastructure designed to <br className="br-lg" />
+            maximize uptime, operational efficiency, and long-term performance.
           </p>
           <div className="btn-row">
             <a href="#contact" className="btn btn--primary">
