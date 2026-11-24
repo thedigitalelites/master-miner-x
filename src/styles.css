@@ -6320,3 +6320,65 @@ main > section { position: relative; }
   #why-mine .wm-cta p { margin-left: calc(17 * var(--w)); max-width: calc(610 * var(--w)); }
 }
 @media (min-width: 1025px) { #buy-host-mine { background-size: 100% 100%; } }
+@media (min-width: 1025px) {
+  .wm-line { display: block; white-space: nowrap; }
+  #why-mine .wm-card__intro, #why-mine .wm-head__aside p { max-width: none !important; }
+  #why-mine .wm-cta p { max-width: none; white-space: nowrap; }
+  #why-mine .wm-list dd { white-space: nowrap; }
+  /* row icons: brighter outline and larger glyphs, as in the reference */
+  #why-mine .wm-badge svg { stroke: rgba(120, 238, 226, 0.85) !important; stroke-width: 1.5 !important; fill: rgba(8, 30, 34, 0.9) !important; }
+  #why-mine .wm-badge .icon { width: calc(26 * var(--w)); height: calc(26 * var(--w)); color: #d8fffa; stroke-width: 1.8; }
+  /* faint lighter inner fill */
+  #why-mine .wm-card > .wm-frame > path:first-of-type { fill: rgba(18, 52, 56, 0.45); }
+  /* Learn more: filled teal gradient */
+  #why-mine .wm-btn { height: calc(62 * var(--w)); font-size: calc(20 * var(--w)); padding: 0 calc(30 * var(--w)) 0 calc(40 * var(--w)); }
+  #why-mine .wm-btn::after { background: linear-gradient(180deg, #2c7f79, #175451) !important; }
+}
+
+/* =========================================================
+   Enterprise hosting — laid out from reference 09 (1860px wide).
+   ========================================================= */
+@media (min-width: 1025px) {
+  #hosting { --h9: calc(100 * var(--vw, 1vw) / 1860); padding: 0; height: calc(1052 * var(--h9)); }
+  #hosting .container.hosting { display: block; position: relative; max-width: none; padding: 0; height: 100%; }
+  #hosting .hosting__left { position: absolute; left: calc(115 * var(--h9)); top: calc(96 * var(--h9)); width: calc(880 * var(--h9)); padding: 0; }
+  #hosting .section-head { margin: 0; gap: 0; }
+  #hosting .eyebrow { font-size: calc(15 * var(--h9)); line-height: calc(20 * var(--h9)); margin: 0 0 calc(28 * var(--h9)); }
+  #hosting h2.h-section { font-size: calc(42 * var(--h9)); line-height: calc(52 * var(--h9)); white-space: nowrap; }
+  #hosting h2.h-section .accent { font-size: calc(54 * var(--h9)); line-height: calc(60 * var(--h9)); }
+  #hosting .lead { font-size: calc(17.5 * var(--h9)); line-height: calc(33 * var(--h9)); margin-top: calc(18 * var(--h9)); max-width: calc(620 * var(--h9)); }
+  #hosting .hosting__features { position: absolute; left: calc(-2 * var(--h9)); top: calc(299 * var(--h9)); width: calc(867 * var(--h9)); grid-template-columns: calc(420 * var(--h9)) calc(420 * var(--h9)); column-gap: calc(27 * var(--h9)); row-gap: calc(35 * var(--h9)); }
+  #hosting .feature-chip { min-height: 0; height: calc(102 * var(--h9)); padding: 0 calc(18 * var(--h9)) 0 calc(18 * var(--h9)); gap: calc(20 * var(--h9)); font-size: calc(17.5 * var(--h9)); }
+  #hosting .feature-chip .wm-badge { width: calc(58 * var(--h9)) !important; height: calc(58 * var(--h9)) !important; }
+  #hosting .feature-chip .wm-badge .icon { width: calc(32 * var(--h9)); height: calc(32 * var(--h9)); color: #c8faf4; stroke-width: 1.8; }
+  #hosting .price-card { position: absolute !important; left: calc(1062 * var(--h9)); top: calc(205 * var(--h9)); width: calc(683 * var(--h9)); height: calc(720 * var(--h9)); padding: calc(68 * var(--h9)) calc(60 * var(--h9)) 0 calc(60 * var(--h9)); }
+  #hosting .price-card__label { font-size: calc(17 * var(--h9)); margin: 0 0 calc(22 * var(--h9)); }
+  #hosting .price-card .muted { font-size: calc(17 * var(--h9)); }
+  #hosting .price-card__value { font-size: calc(84 * var(--h9)); line-height: calc(92 * var(--h9)); margin: calc(4 * var(--h9)) 0 calc(14 * var(--h9)); }
+  #hosting .price-card__value span { font-size: calc(22 * var(--h9)); }
+  #hosting .price-card .rule-dot { margin: 0 0 calc(22 * var(--h9)); }
+  #hosting .price-card .check-list { gap: calc(14 * var(--h9)) calc(20 * var(--h9)); margin: calc(18 * var(--h9)) 0 calc(28 * var(--h9)); grid-template-columns: calc(300 * var(--h9)) 1fr; }
+  #hosting .price-card .check-list li { font-size: calc(16.5 * var(--h9)); gap: calc(14 * var(--h9)); white-space: nowrap; }
+  #hosting .price-card .check-list .icon { width: calc(24 * var(--h9)); height: calc(24 * var(--h9)); }
+  #hosting .quote-btn { height: calc(94 * var(--h9)); font-size: calc(24 * var(--h9)); margin-left: calc(-12 * var(--h9)); width: calc(100% + 24 * var(--h9)); }
+}
+@media (min-width: 1025px) {
+  #hosting h2.h-section { font-size: calc(46.5 * var(--h9)); line-height: calc(54 * var(--h9)); }
+  #hosting .lead { font-size: calc(18.7 * var(--h9)); margin-top: calc(16 * var(--h9)); max-width: calc(640 * var(--h9)); }
+  #hosting .feature-chip { padding-left: calc(18 * var(--h9)); gap: calc(30 * var(--h9)); font-size: calc(18.9 * var(--h9)); }
+  #hosting .price-card { padding-top: calc(60 * var(--h9)); }
+  #hosting .price-card .muted { font-size: calc(18 * var(--h9)); }
+  #hosting .price-card .check-list { margin-top: calc(26 * var(--h9)); }
+  #hosting .price-card .check-list li { font-size: calc(17.7 * var(--h9)); }
+}
+@media (min-width: 1025px) {
+  #hosting .price-card__value { font-family: 'Oxanium', sans-serif; font-weight: 700; letter-spacing: 0; color: #c6fbf5; text-shadow: 0 0 calc(18 * var(--h9)) rgba(70, 227, 212, 0.55); }
+  #hosting .feature-chip .wm-badge .icon { width: calc(38 * var(--h9)); height: calc(38 * var(--h9)); color: #8ff5ea; filter: drop-shadow(0 0 4px rgba(70, 227, 212, 0.6)); }
+  #hosting .feature-chip .wm-badge svg { stroke: rgba(96, 214, 202, 0.55) !important; fill: rgba(8, 26, 30, 0.9) !important; }
+  #hosting .feature-chip > .wm-frame .wm-frame__lines { stroke: rgba(110, 236, 224, 0.75); }
+  #hosting .feature-chip > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.22); stroke-width: 8; }
+  #hosting .price-card > .wm-frame .wm-frame__lines { stroke: #6ff2e6; stroke-width: 2.2; }
+  #hosting .price-card > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.3); stroke-width: 12; }
+  #hosting .quote-btn > .wm-frame .wm-frame__halo { stroke: rgba(70, 227, 212, 0.3); stroke-width: 10; }
+  #hosting .price-card .check-list .icon { color: #9ff7ee; }
+}

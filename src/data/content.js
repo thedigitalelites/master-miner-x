@@ -159,6 +159,7 @@ export const whyMine = {
     label: 'Option A',
     title: 'Buy 1 BTC',
     intro: 'You hold one coin. Your position never grows – it only moves with price.',
+    introLines: ['You hold one coin. Your position never grows – it', 'only moves with price.'],
     rows: [
       ['target', 'Exposure', '100% price. Nothing else moves the number.'],
       ['chart', 'Yield', 'None. One coin stays one coin.'],
@@ -170,6 +171,7 @@ export const whyMine = {
     label: 'Option B',
     title: 'Buy 1 BTC of miners',
     intro: 'You hold machines that produce coin daily at a cost below what the market charges for it.',
+    introLines: ['You hold machines that produce coin daily at a cost', 'below what the market charges for it.'],
     rows: [
       ['target', 'Exposure', 'Price and production. Your stack grows every day.'],
       ['chart', 'Yield', 'Daily BTC output, paid to your own wallet.'],

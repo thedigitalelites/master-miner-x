@@ -102,7 +102,7 @@ function OptionCard({ data }) {
         <span className="wm-card__tag" aria-hidden="true" />
       </p>
       <h3 className="wm-card__title">{data.title}</h3>
-      <p className="wm-card__intro">{data.intro}</p>
+      <p className="wm-card__intro">{data.introLines ? data.introLines.map((l, i) => <span key={i} className="wm-line">{l}</span>) : data.intro}</p>
       <dl className="wm-list">
         {data.rows.map(([icon, term, desc]) => (
           <div className="wm-list__row" key={term}>
@@ -124,6 +124,7 @@ function TradeOff() {
       <OctBadge size={56}><Icon name="calculator" size={26} /></OctBadge>
       <p>
         <strong>The trade-off is real.</strong> Hardware, difficulty and downtime risk – and a mine-vs-hold
+        <br className="br-lg" />
         calculator that pushes all three against each other.
       </p>
       <a href="#calculator" className="wm-btn">
@@ -166,9 +167,10 @@ export default function WhyMine() {
               <circle cx="4" cy="108" r="2.5" />
             </svg>
             <p>
-              Spend $50,000 on Bitcoin and you own $50,000 of Bitcoin – for ever, exactly. Spend it on machines and
-              you are buying the <em>production</em> of Bitcoin at a cost below spot, every day, plus hardware you
-              can still sell at the end.
+              <span className="wm-line">Spend $50,000 on Bitcoin and you own $50,000 of Bitcoin –</span>
+              <span className="wm-line">for ever, exactly. Spend it on machines and you are buying the</span>
+              <span className="wm-line"><em>production</em> of Bitcoin at a cost below spot, every day, plus</span>
+              <span className="wm-line">hardware you can still sell at the end.</span>
             </p>
           </div>
         </div>
