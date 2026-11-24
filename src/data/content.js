@@ -185,21 +185,25 @@ export const whyHost = [
     icon: 'chip',
     title: 'You own the hardware',
     text: 'Buy the ASIC miner outright. It is your asset, hosted under a clear agreement, with no cloud contracts or outside machines.',
+    lines: ['Buy the ASIC miner outright. It is your', 'asset, hosted under a clear agreement,', 'with no cloud contracts or outside', 'machines.'],
   },
   {
     icon: 'server',
     title: 'White-glove US hosting',
     text: 'Racked in our Iowa data centers, all in from $0.065/kWh, with 95% average uptime and 24/7 monitoring.',
+    lines: ['Racked in our Iowa data centers,', 'all in from $0.065/kWh, with 95%', 'average uptime and 24/7 monitoring.'],
   },
   {
     icon: 'wrench',
     title: 'Certified in-house repair',
     text: 'Our own repair center handles hashboard and PSU failures fast. Units bought from us get 12 months of free parts and labor, with no dollar cap.',
+    lines: ['Our own repair center handles', 'hashboard and PSU failures fast.', 'Units bought from us get 12 months of', 'free parts and labor, with no dollar cap.'],
   },
   {
     icon: 'gauge',
     title: 'Precision billing & pause',
     text: 'Pay only for the hours your machine is actually hashing, and pause during down markets without penalty.',
+    lines: ['Pay only for the hours your machine', 'is actually hashing, and pause during', 'down markets without penalty.'],
   },
 ];
 
