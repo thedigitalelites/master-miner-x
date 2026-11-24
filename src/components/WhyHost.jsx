@@ -34,10 +34,11 @@ const cardShape = (w, h) => {
       `M${100 * s} ${y - 2} L${323 * s} ${y - 2} M${100 * s} ${y + 2} L${323 * s} ${y + 2}`,
       `M${337 * s} ${y} L${349 * s} ${y}`,
     ],
-    over: (
-      <g className="wm-frame__dots">
-        <circle cx={140 * s} cy={-3} r="1.3" /><circle cx={146 * s} cy={-3} r="1.3" /><circle cx={150 * s} cy={1} r="1.1" />
-        <circle cx={232 * s} cy={-3} r="1.3" /><circle cx={238 * s} cy={-3} r="1.3" /><circle cx={232 * s} cy={1} r="1.1" />
+    under: (
+      <g className="wh-stubs">
+        <path d={`M${132 * s} -4 L${146 * s} -4 L${150 * s} 0 L${156 * s} 0`} />
+        <path d={`M${226 * s} 0 L${232 * s} 0 L${236 * s} -4 L${250 * s} -4`} />
+        <circle cx={130 * s} cy={-4} r="1.6" /><circle cx={252 * s} cy={-4} r="1.6" />
       </g>
     ),
   };
@@ -48,7 +49,7 @@ export default function WhyHost() {
     <section className="section" id="why-host">
       <div className="wh">
         <Hud className="wh-bar" shape={barShape}>
-          <span className="wh-bar__icon"><Icon name="calculator" size={30} strokeWidth={1.5} /></span>
+          <span className="wh-bar__icon"><Icon name="calcL" size={26} strokeWidth={1.8} /></span>
           <div className="wh-bar__text">
             <p className="wh-bar__title">Run the numbers on any machine</p>
             <p className="wh-bar__body">
@@ -78,9 +79,9 @@ export default function WhyHost() {
             <Hud className="wh-card feature-card" shape={cardShape} key={f.title}>
               <span className="wh-card__icon">
                 <svg viewBox="0 0 66 63" preserveAspectRatio="none" aria-hidden="true">
-                  <polygon points="10,0.75 56,0.75 65.25,10 65.25,53 56,62.25 10,62.25 0.75,53 0.75,10" />
+                  <polygon points="12,0.75 54,0.75 65.25,12 65.25,51 54,62.25 12,62.25 0.75,51 0.75,12" />
                 </svg>
-                <Icon name={f.icon} size={36} strokeWidth={1.7} />
+                <Icon name={({ chip: 'cpu', server: 'serverBars', wrench: 'wrenchL', gauge: 'gaugeL' })[f.icon] || f.icon} size={38} strokeWidth={2} />
               </span>
               <h3 className="wh-card__title">{f.title}</h3>
               <p className="wh-card__body">
