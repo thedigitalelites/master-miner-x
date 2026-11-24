@@ -6205,3 +6205,11 @@ main > section { position: relative; }
   #budget .stepper { align-self: start; margin-top: calc(2 * var(--b)); }
   #budget .range { margin-top: calc(5 * var(--b)); margin-bottom: calc(27 * var(--b)); }
 }
+@media (min-width: 1025px) { #miners .miner-card__media { flex: none; } #miners .miner-card__body { padding-top: calc(22 * var(--m)); min-height: 0; } }
+@media (min-width: 1025px) {
+  #miners .miner-card__body { padding-top: calc(17 * var(--m)); gap: calc(1 * var(--m)); }
+  #miners .earn-box { margin-top: calc(10 * var(--m)); padding-top: calc(10 * var(--m)); padding-bottom: calc(10 * var(--m)); }
+  #miners .earn-box__net { margin: calc(2 * var(--m)) 0 calc(8 * var(--m)); }
+  #miners .miner-card__price { padding-top: calc(10 * var(--m)); margin: calc(6 * var(--m)) 0 calc(8 * var(--m)); }
+}
+@media (min-width: 1025px) { #miners .miner-card__price { margin: calc(14 * var(--m)) 0 calc(10 * var(--m)); } #miners .miner-card__links { margin-top: calc(22 * var(--m)); } }
