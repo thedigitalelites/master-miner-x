@@ -152,7 +152,7 @@ export default function BuyHostMine() {
                 <span className="step__num">01</span>
                 <div>
                   <h3 className="h-card">Choose your miner</h3>
-                  <p className="muted">Buy new, or browse client-listed machines that never leave the facility. No minimum quantity.</p>
+                  <p className="muted">Buy new, or browse client-listed machines that <br className="br-lg" />never leave the facility. No minimum quantity.</p>
                 </div>
               </div>
               <Hud className="step__media featured-miner" shape={minerShape}>
@@ -181,7 +181,7 @@ export default function BuyHostMine() {
                 <span className="step__num">02</span>
                 <div>
                   <h3 className="h-card">We deploy and run it</h3>
-                  <p className="muted">Racked in our own Iowa facilities. Power, cooling, networking, firmware and monitoring handled.</p>
+                  <p className="muted">Racked in our own Iowa facilities. Power, cooling, <br className="br-lg" />networking, firmware and monitoring handled.</p>
                 </div>
               </div>
               <Hud className="step__media step__photo" shape={photoShape}>
@@ -193,7 +193,7 @@ export default function BuyHostMine() {
                 <span className="step__num">03</span>
                 <div>
                   <h3 className="h-card">You monitor performance</h3>
-                  <p className="muted">Track hashrate, uptime and rewards on the real dashboard. Rewards go to the wallet you choose.</p>
+                  <p className="muted">Track hashrate, uptime and rewards on the real <br className="br-lg" />dashboard. Rewards go to the wallet you choose.</p>
                 </div>
               </div>
               <Hud className="step__media step__dash" shape={dashShape}>
