@@ -180,13 +180,6 @@ export const whyMine = {
 };
 
 
-export const stats = [
-  { icon: 'chip', value: '100%', label: 'NVIDIA GPU Powered' },
-  { icon: 'clock', value: '99.9%', label: 'Uptime SLA' },
-  { icon: 'bolt', value: 'Low Latency', label: 'Global Network' },
-  { icon: 'shield', value: 'Enterprise', label: 'Grade Security' },
-];
-
 export const whyHost = [
   {
     icon: 'chip',

@@ -1,4 +1,4 @@
-import { market, stats, miners } from '../data/content.js';
+import { market, miners } from '../data/content.js';
 import { num } from '../lib/mining.js';
 import { Hud, Eyebrow, chamfer, rounded } from './Hud.jsx';
 import Icon from './Icon.jsx';
@@ -6,14 +6,6 @@ import PriceChart from './PriceChart.jsx';
 
 const featured = miners[0];
 
-// Line icons for the stat bar: chip in a square, the rest in a ring.
-export function StatIcon({ name }) {
-  return (
-    <span className={`stat-icon stat-icon--${name === 'chip' ? 'square' : name === 'shield' ? 'bare' : 'ring'}`} aria-hidden="true">
-      <Icon name={name} size={name === 'shield' ? 50 : 32} strokeWidth={1.3} />
-    </span>
-  );
-}
 
 // ---- frame shapes (fixed-size corners at any width) ----
 const roundShape = (r, fill) => (w, h) => ({ main: rounded(w, h, r, 0.75), fill });
@@ -211,17 +203,6 @@ export default function BuyHostMine() {
           </ol>
         </Hud>
 
-        <Hud className="stat-bar" shape={roundShape(14, 'rgba(7, 21, 24, 0.7)')}>
-          {stats.map((s) => (
-            <div className="stat-bar__item" key={s.label}>
-              <StatIcon name={s.icon} />
-              <div>
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            </div>
-          ))}
-        </Hud>
       </div>
     </section>
   );
