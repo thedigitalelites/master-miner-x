@@ -5,15 +5,16 @@ import { Hud, Eyebrow, rounded } from './Hud.jsx';
 import Icon from './Icon.jsx';
 
 const PRESETS = [25000, 50000, 100000, 250000, 500000, 1000000];
-const MIN = 10000;
+const MIN = 1000;
 const MAX = 1000000;
 const RATE = 0.065;
 const INSTALL_FEE = 95; // per unit, placeholder
 const btcMiners = miners.filter((m) => m.available && !m.scrypt);
 
 // Log-scale slider so small and large budgets are both easy to pick.
-const toSlider = (v) => (Math.log(v / MIN) / Math.log(MAX / MIN)) * 100;
-const fromSlider = (p) => Math.round((MIN * (MAX / MIN) ** (p / 100)) / 1000) * 1000;
+// Linear track from $0 to $1M, as in the reference ($100k sits about a tenth of the way along).
+const toSlider = (v) => Math.min(100, (v / MAX) * 100);
+const fromSlider = (p) => Math.max(MIN, Math.round(((p / 100) * MAX) / 1000) * 1000);
 const short = (v) => (v >= 1e6 ? `$${v / 1e6}M` : `$${v / 1000}k`);
 
 function fleetFor(miner, budget) {
@@ -69,6 +70,7 @@ function fleetShape(w, h) {
 export default function BudgetFleet() {
   const [budget, setBudget] = useState(100000);
   const [custom, setCustom] = useState('');
+  const customShown = custom || String(budget);
   const [qtyOverride, setQtyOverride] = useState(null);
   const [showCosts, setShowCosts] = useState(false);
 
@@ -124,7 +126,7 @@ export default function BudgetFleet() {
               inputMode="numeric"
               placeholder="Custom"
               aria-label="Custom budget"
-              value={custom}
+              value={customShown}
               onChange={(e) => setCustom(e.target.value.replace(/[^\d]/g, ''))}
               onBlur={() => custom && pick(+custom)}
               onKeyDown={(e) => e.key === 'Enter' && custom && pick(+custom)}
@@ -149,7 +151,7 @@ export default function BudgetFleet() {
           <a href="#contact" className="token-card">
             <span className="token-card__badge">S23</span>
             <span>
-              <strong>Own hashrate as S23.</strong> Put ${num(budget)} into the token instead, with no machine to
+              <strong>Own hashrate as S23.</strong> Put ${num(budget)} into the token instead, with no machine to <br className="br-lg" />
               buy or look after.
             </span>
             <Icon name="arrow" size={18} />
@@ -166,7 +168,7 @@ export default function BudgetFleet() {
               ${num(n.atHigh)} <span>a month</span>
             </p>
             <ul className="fleet-card__notes">
-              <li>at the 12-month high of ${num(market.btcHigh12m)}</li>
+              <li>at the 12-month high of ${num(market.btcHigh12m)} <Icon name="info" size={14} className="fleet-card__info" /></li>
               <li>≈ ${num(n.atSpot)} at today’s ${num(market.btcPrice)}</li>
               <li>{n.btcMonth.toFixed(4)} BTC a month</li>
             </ul>

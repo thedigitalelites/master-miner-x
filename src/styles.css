@@ -6181,3 +6181,27 @@ main > section { position: relative; }
   #budget h2.h-section { margin-bottom: calc(21 * var(--b)); }
   #budget .fleet-card__value { font-size: calc(62 * var(--b)); }
 }
+.fleet-alt > p.muted.small.fleet-alt__fine { display: block; }
+.fleet-card__info { display: inline-block; vertical-align: -2px; margin-left: 8px; color: #6d8587; }
+@media (min-width: 1025px) {
+  #budget h2.h-section { font-weight: 400; text-shadow: 0 0 calc(10 * var(--b)) rgba(70, 227, 212, 0.35); }
+  #budget .fleet-card__notes { font-size: calc(17 * var(--b)); line-height: calc(33 * var(--b)); gap: 0; color: rgb(150, 165, 168); }
+  #budget .fleet-line { grid-template-columns: calc(118 * var(--b)) 1fr auto; gap: calc(25 * var(--b)); }
+  #budget .fleet-line__thumb { width: calc(118 * var(--b)); height: calc(94 * var(--b)); }
+  #budget .fleet-line__body .mono { font-size: calc(14.3 * var(--b)); }
+}
+/* Bitcoin Miners: card text sits 20px lower, as in the reference */
+@media (min-width: 1025px) { #miners .miner-card__body { padding-top: calc(42 * var(--m)); } }
+/* hero plate: extended to the left so it always covers the section */
+@media (min-width: 1025px) { .hero { background-size: calc(2826 * var(--h)) auto; background-position: right top; } }
+@media (min-width: 1025px) {
+  #budget .stock-card { margin-top: calc(62 * var(--b)); }
+  #budget .token-card { margin-top: calc(50 * var(--b)); }
+  #budget .fleet-line { margin-top: calc(12 * var(--b)); margin-bottom: calc(48 * var(--b)); }
+  #budget .fleet-alt__fine { margin-top: calc(28 * var(--b)); }
+}
+@media (min-width: 1025px) {
+  #budget .fleet-line { margin-bottom: calc(53 * var(--b)); }
+  #budget .stepper { align-self: start; margin-top: calc(2 * var(--b)); }
+  #budget .range { margin-top: calc(5 * var(--b)); margin-bottom: calc(27 * var(--b)); }
+}
