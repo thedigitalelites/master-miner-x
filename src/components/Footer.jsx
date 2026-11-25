@@ -38,7 +38,7 @@ export default function Footer() {
       <div className="container footer-wrap">
         <Hud className="footer-panel" shape={footerShape}>
           <div className="footer-panel__brand">
-            <img src="img/logo.webp" alt="Master Miner X" width="150" height="56" />
+            <img src="img/logo-header.webp" alt="Master Miner X" width="133" height="60" />
             <p className="muted">
               Enterprise AI infrastructure, data centers, and digital asset mining. Headquartered in Dubai.
             </p>

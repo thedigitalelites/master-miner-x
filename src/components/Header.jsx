@@ -22,7 +22,7 @@ export default function Header() {
       <div className="container site-header__inner">
         <nav className="navbar" aria-label="Main">
           <a href="#top" className="navbar__logo" aria-label="Master Miner X home">
-            <img src="img/logo.webp" alt="Master Miner X" width="110" height="41" />
+            <img src="img/logo-header.webp" alt="Master Miner X" width="111" height="50" />
           </a>
           <ul className={`navbar__links ${open ? 'is-open' : ''}`}>
             {nav.map((item) => (

@@ -6515,3 +6515,12 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   #calculator .calc__group-head h4 .wm-badge svg { stroke: rgba(130, 240, 228, 0.9) !important; }
   #calculator .calc__group-head h4 .wm-badge { color: #c8faf4; }
 }
+/* header logo from the reference (white lettering) */
+.navbar__logo img { height: calc(50 / 19.26 * var(--vw, 1vw)); width: auto; min-height: 38px; max-height: 50px; }
+@media (min-width: 1240px) { .footer-panel__brand img { height: 60px; width: auto; } }
+/* hero machine moved 60 reference px left so it is never cut off; plate extended by the same */
+@media (min-width: 1025px) {
+  .hero { background-size: calc(2886 * var(--h)) auto; background-position: right top; }
+  .hero__media { right: calc(60 * var(--h)) !important; }
+}
+@media (min-width: 1025px) { .hero .h-display { font-size: calc(57 * var(--h)); line-height: calc(70 * var(--h)); letter-spacing: 0.005em; margin-bottom: calc(10 * var(--h)); } }
