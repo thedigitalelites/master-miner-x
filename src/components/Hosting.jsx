@@ -89,7 +89,7 @@ export default function Hosting() {
           <ul className="check-list">
             {hostingIncludes.map((i) => (
               <li key={i}>
-                <Icon name="checkCircle" size={26} strokeWidth={1.4} /> {i}
+                <OctBadge size={26} className="check-oct"><Icon name="check" size={14} strokeWidth={2} /></OctBadge> {i}
               </li>
             ))}
           </ul>

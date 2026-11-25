@@ -6796,3 +6796,24 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
 }
 #calculator .payback .payback__scale span { font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0; color: #b4c0c1; }
 #calculator .dist-legend b:not(.neg):not(.pos) { font-weight: 400; color: #c3cdcd; }
+/* Hosting text weights per the design. */
+@media (min-width: 1025px) {
+  #hosting .lead { font-weight: 400; color: #c4cfd0; letter-spacing: -0.005em; }
+  #hosting .feature-chip span { font-weight: 300; letter-spacing: -0.005em; color: #e3ebeb; }
+  #hosting .price-card .muted { font-weight: 300; }
+  #hosting .price-card .check-list li { font-weight: 300; letter-spacing: -0.005em; align-items: center; }
+  #hosting .check-oct { width: calc(28 * var(--h9)) !important; height: calc(28 * var(--h9)) !important; flex: none; }
+  #hosting .check-oct svg:first-child { width: 100%; height: 100%; }
+  #hosting .check-oct polygon { fill: rgba(8, 30, 34, 0.9); stroke: rgba(110, 236, 224, 0.8); }
+  #hosting .check-oct .icon { color: #8ff5ea; width: calc(15 * var(--h9)); height: calc(15 * var(--h9)); }
+  #hosting .quote-btn { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 600; letter-spacing: 0; }
+}
+/* Step-number outline: whiter line, stronger halo (design). */
+#buy-host-mine .step__num { -webkit-text-stroke: 1.1px rgb(104, 190, 186); text-shadow: 0 0 4px rgba(98, 200, 195, 0.45), 0 0 16px rgba(60, 200, 190, 0.26), 0 0 32px rgba(40, 180, 175, 0.15); }
+@media (min-width: 1025px) {
+  #hosting .check-oct polygon { stroke: #7ff0e4; stroke-width: 1.3; }
+  #hosting .check-oct .icon, #hosting .check-oct .icon path { stroke: #b6fbf3; }
+  #hosting .quote-btn { font-size: calc(26 * var(--h9)); }
+  #hosting .quote-btn .icon { width: calc(26 * var(--h9)); height: calc(26 * var(--h9)); stroke-width: 2; }
+  #hosting .price-card__value { font-size: calc(95 * var(--h9)); }
+}
