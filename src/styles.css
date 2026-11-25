@@ -6828,3 +6828,4 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
 #buy-host-mine .step__num { text-shadow: none !important; filter: drop-shadow(0 0 3px rgba(98, 200, 195, 0.55)) drop-shadow(0 0 12px rgba(60, 200, 190, 0.35)); }
 #buy-host-mine .step__num { font-weight: 700; }
 #buy-host-mine .step__num { -webkit-text-stroke: 1.5px rgb(104, 196, 192); }
+@media (min-width: 1025px) { #budget .caps-btn--solid .icon { stroke-width: 2; color: #f4feff; filter: drop-shadow(0 0 2px rgba(255,255,255,0.35)); } }
