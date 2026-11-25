@@ -22,6 +22,7 @@ export const tickerCoins = [
 ];
 
 export const market = {
+  hashprice: 0.02998, // USD per TH/s per day, before pool fees
   btcPrice: 64120.39,
   btcHigh12m: 96933,
   difficulty: 134823837323272.66,
@@ -323,3 +324,24 @@ export const footerCols = [
   { title: 'Data Centers & Hosting', links: ['Colocation', 'Dedicated Hosting'] },
   { title: 'Company', links: ['About', 'Investment', 'Contact'] },
 ];
+
+// Product page copy. Sample data for layout; replace with real listings.
+export const productInfo = {
+  description: (m) =>
+    `${m.brand}'s ${m.cooling === 'Hydro' ? 'hydro-cooled' : 'air-cooled'} ${m.name.replace('Antminer ', '')} Bitcoin miner, bought and hosted with Master Miner X. You own the machine, choose the pool and get paid to your own wallet.`,
+  bundles: [
+    ['1–4 units', 1],
+    ['5–9 units', 0.98],
+    ['10+ units', 0.96],
+  ],
+  howItWorks: [
+    'Order the machine and pick a hosting rate.',
+    'We rack it in our Iowa facility and bring it online.',
+    'Rewards go to the pool and wallet you choose.',
+  ],
+  repairs: [
+    '12 months of free parts and labor on units bought from us.',
+    'Hashboard and PSU repairs handled in our own repair center.',
+    'Swap units available while a machine is in the lab.',
+  ],
+};

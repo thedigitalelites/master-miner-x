@@ -13,11 +13,13 @@ function MinerCard({ miner, rate }) {
         {miner.tag && <span className="tag">{miner.tag}</span>}
         {miner.bundles && <span className="ribbon ribbon--corner" aria-hidden="true"><span>Bundles</span></span>}
         {!miner.available && <span className="tag tag--muted">Ships next batch</span>}
-        <img src={miner.cooling === 'Hydro' ? 'img/card-hydro.webp' : 'img/card-air.webp'} alt={miner.name} width="411" height="231" loading="lazy" decoding="async" />
+        <a href={`product.html?miner=${miner.id}`} className="miner-card__link" aria-label={`${miner.name} details`}>
+          <img src={miner.cooling === 'Hydro' ? 'img/card-hydro.webp' : 'img/card-air.webp'} alt={miner.name} width="411" height="231" loading="lazy" decoding="async" />
+        </a>
       </div>
       <div className="miner-card__body">
         <p className="mono-label mono-label--muted">{miner.brand}</p>
-        <h3 className="miner-card__name">{miner.name}</h3>
+        <h3 className="miner-card__name"><a href={`product.html?miner=${miner.id}`}>{miner.name}</a></h3>
         <div className="miner-card__meta">
           {miner.variants ? (
             <div className="mini-chips" role="group" aria-label="Hashrate option">
@@ -62,11 +64,17 @@ function MinerCard({ miner, rate }) {
           </p>
         </div>
 
-        <button className="btn btn--outline btn--block miner-card__cart" disabled={!miner.available}>
+        {miner.available ? (
+          <a className="btn btn--outline btn--block miner-card__cart" href={`product.html?miner=${miner.id}`}>
+          <Icon name="cart" size={18} /> {miner.available ? 'Add to cart' : 'Reserve from next batch'}
+        </a>
+        ) : (
+          <button className="btn btn--outline btn--block miner-card__cart" disabled={!miner.available}>
           <Icon name="cart" size={18} /> {miner.available ? 'Add to cart' : 'Reserve from next batch'}
         </button>
+        )}
         <p className="miner-card__links">
-          <a href="#calculator">View full specs</a>
+          <a href={`product.html?miner=${miner.id}`}>View full specs</a>
           {miner.marketplace && (
             <>
               <span>·</span>
