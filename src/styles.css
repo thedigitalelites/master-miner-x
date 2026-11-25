@@ -6398,3 +6398,6 @@ main > section { position: relative; }
   #hosting .price-card { top: calc(209 * var(--h9)); }
   #hosting .price-card .check-list { margin-bottom: calc(33 * var(--h9)); }
 }
+@media (min-width: 1025px) {
+  #calculator { background: #01141a url('../img/bg-calculator.webp') top center / 100% auto no-repeat; }
+}
