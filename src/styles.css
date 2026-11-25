@@ -6824,3 +6824,7 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   #calculator .calc__profit .ledger > div { padding-top: calc(4 * var(--c)); padding-bottom: calc(4 * var(--c)); }
   #calculator .payback { margin-top: 0; padding-top: 0; }
 }
+/* Step numbers: glow from the outline only (a text-shadow on transparent text fills the glyph). */
+#buy-host-mine .step__num { text-shadow: none !important; filter: drop-shadow(0 0 3px rgba(98, 200, 195, 0.55)) drop-shadow(0 0 12px rgba(60, 200, 190, 0.35)); }
+#buy-host-mine .step__num { font-weight: 700; }
+#buy-host-mine .step__num { -webkit-text-stroke: 1.5px rgb(104, 196, 192); }
