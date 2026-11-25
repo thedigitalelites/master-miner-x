@@ -14,8 +14,9 @@ function Accordion({ title, children, open, onToggle }) {
   return (
     <div className={`pp-acc ${open ? 'is-open' : ''}`}>
       <button className="pp-acc__head" onClick={onToggle} aria-expanded={open}>
+        <i className="pp-acc__accent" aria-hidden="true" />
         <span>{title}</span>
-        <Icon name={open ? 'minus' : 'plus'} size={18} />
+        <Icon name={open ? 'minus' : 'plus'} size={18} strokeWidth={1.2} />
       </button>
       {open && <div className="pp-acc__body">{children}</div>}
     </div>
@@ -76,7 +77,7 @@ export default function ProductPage() {
 
       <div className="pp-info">
         <p className="pp-brand">{miner.brand}</p>
-        <h1 className="pp-title">{miner.name} ({miner.hashrate} {unit})</h1>
+        <h1 className="pp-title">{miner.name} ({miner.hashrate} <span className="pp-unit">{unit}</span>)</h1>
         <p className="pp-desc">{productInfo.description(miner)}</p>
         <p className="pp-price">{usd(miner.price)}</p>
         <p className="pp-plan">
