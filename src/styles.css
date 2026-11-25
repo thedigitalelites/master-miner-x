@@ -6824,11 +6824,3 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   #calculator .calc__profit .ledger > div { padding-top: calc(4 * var(--c)); padding-bottom: calc(4 * var(--c)); }
   #calculator .payback { margin-top: 0; padding-top: 0; }
 }
-/* Hero: wider plate (soft fade on the right) so the machine sits further left. */
-@media (min-width: 1025px) {
-  .hero { background-size: calc(3026 * var(--h)) auto !important; background-position: right top !important; }
-  .hero__media { right: calc(200 * var(--h)) !important; }
-}
-@media (min-width: 1025px) {
-  .hero__media img { -webkit-mask-image: radial-gradient(ellipse 62% 60% at 52% 50%, #000 70%, transparent 100%); mask-image: radial-gradient(ellipse 62% 60% at 52% 50%, #000 70%, transparent 100%); }
-}
