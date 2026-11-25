@@ -55,6 +55,27 @@ const resultShape = (w, h) => ({
 const btnShape = (w, h) => ({ main: rounded(w, h, 6, 0.75), fill: 'rgba(6, 20, 23, 0.8)', tracer: false });
 const periodShape = (w, h) => ({ main: chamfer(w, h, [8, 8, 8, 8], 0.75), fill: 'rgba(6, 18, 21, 0.8)', tracer: false });
 
+// Text input that shows thousands separators (8,350) and accepts typed numbers.
+function FmtInput({ value, onChange, decimals = 2, group = true, disabled }) {
+  const [editing, setEditing] = useState(null);
+  const shown = editing !== null ? editing : value === '' ? '' : Number(value).toLocaleString('en-US', { useGrouping: group, maximumFractionDigits: decimals });
+  return (
+    <input
+      type="text"
+      inputMode="decimal"
+      value={shown}
+      disabled={disabled}
+      onFocus={() => setEditing(value === '' ? '' : String(value))}
+      onBlur={() => setEditing(null)}
+      onChange={(e) => {
+        const raw = e.target.value.replace(/[^\d.]/g, '');
+        setEditing(raw);
+        onChange(raw === '' ? '' : +raw);
+      }}
+    />
+  );
+}
+
 function NumInput({ value, onChange, step = 'any', disabled }) {
   return (
     <input
@@ -113,7 +134,7 @@ export default function MiningCalculator() {
         <header className="section-head section-head--center">
           <h2 className="h-section">Bitcoin Mining Calculator</h2>
           <p className="lead">
-            Estimate mining profit and hardware payback using Bitcoin price, network difficulty, and your hosting rate.
+            Estimate mining profit and hardware payback using live Bitcoin price, network difficulty, and your hosting rate.
           </p>
         </header>
 
@@ -128,7 +149,7 @@ export default function MiningCalculator() {
                 <h4>Hardware setup</h4>
                 <span className="tag tag--outline">Website price</span>
               </div>
-              <Field label="Miner or bundle">
+              <Field label="Miner or Bundle">
                 <select
                   value={setup.minerId}
                   onChange={(e) => {
@@ -146,34 +167,35 @@ export default function MiningCalculator() {
               </Field>
               <div className="calc__row">
                 <Field label="Quantity">
-                  <NumInput value={setup.qty} step="1" onChange={set('qty')} />
+                  <FmtInput value={setup.qty} decimals={0} onChange={set('qty')} />
                 </Field>
-                <Field label="Unit price (USD)">
-                  <NumInput value={setup.unitPrice} onChange={set('unitPrice')} />
+                <Field label="Unit Price (USD)">
+                  <FmtInput value={setup.unitPrice} onChange={set('unitPrice')} />
                 </Field>
               </div>
               <p className="calc-field__hint">Prefilled from website pricing. You can enter your own price.</p>
             </div>
 
-            <div className="calc__group">
+            <div className="calc__group calc__ops">
               <div className="calc__row">
-                <Field label="Total hashrate (TH/s)" icon="hash">
-                  <input value={num(r.hashrate)} disabled />
+                <Field label="Total Hashrate (TH/s)" icon="hash">
+                  <input value={num(r.hashrate)} readOnly />
                 </Field>
-                <Field label="Total power (W)" icon="bolt">
-                  <input value={num(r.power)} disabled />
+                <Field label="Total Power (Watts)">
+                  <span className="calc-field__inner-icon"><Icon name="bolt" size={16} /></span>
+                  <input className="has-inner-icon" value={num(r.power)} readOnly />
                 </Field>
-                <Field label="Hosting rate (USD/kWh)" icon="dollar">
-                  <NumInput value={setup.hostingRate} step="0.001" onChange={set('hostingRate')} />
+                <Field label="Hosting Rate (USD/kWh)" icon="dollar">
+                  <FmtInput value={setup.hostingRate} decimals={3} onChange={set('hostingRate')} />
                 </Field>
-                <Field label="Pool fee (%)" icon="coins">
-                  <NumInput value={setup.poolFee} step="0.1" onChange={set('poolFee')} />
+                <Field label="Pool Fee (%)">
+                  <FmtInput value={setup.poolFee} onChange={set('poolFee')} />
                 </Field>
                 <Field label="Uptime (%)" icon="clock">
-                  <NumInput value={setup.uptime} step="1" onChange={set('uptime')} />
+                  <FmtInput value={setup.uptime} onChange={set('uptime')} />
                 </Field>
-                <Field label="Transaction fees earned (%)" icon="receipt">
-                  <NumInput value={setup.txFees} step="0.1" onChange={set('txFees')} />
+                <Field label="Transaction Fees Earned (%)">
+                  <FmtInput value={setup.txFees} onChange={set('txFees')} />
                 </Field>
               </div>
             </div>
@@ -183,17 +205,17 @@ export default function MiningCalculator() {
                 <h4><OctBadge size={40}><Icon name="bitcoin" size={20} strokeWidth={1.4} /></OctBadge> Bitcoin market assumptions</h4>
               </div>
               <div className="calc__row">
-                <Field label="Bitcoin price (USD)" icon="bitcoin">
-                  <NumInput value={mkt.btcPrice} onChange={(v) => setMkt((m) => ({ ...m, btcPrice: v }))} />
+                <Field label="Bitcoin Price (USD)" icon="bitcoin">
+                  <FmtInput value={mkt.btcPrice} onChange={(v) => setMkt((m) => ({ ...m, btcPrice: v }))} />
                 </Field>
-                <Field label="Network difficulty" icon="hash">
-                  <NumInput value={mkt.difficulty} onChange={(v) => setMkt((m) => ({ ...m, difficulty: v }))} />
+                <Field label="Bitcoin Difficulty" icon="hash">
+                  <FmtInput value={mkt.difficulty} group={false} onChange={(v) => setMkt((m) => ({ ...m, difficulty: v }))} />
                 </Field>
-                <Field label="Block subsidy (BTC)" icon="coins">
-                  <input value={market.blockSubsidy} disabled />
+                <Field label="Block Subsidy (BTC)" icon="coins">
+                  <input value={market.blockSubsidy} readOnly />
                 </Field>
                 <p className="calc-field__hint calc__note">
-                  Market values are editable assumptions. This snapshot holds market conditions constant.
+                  Live values are editable assumptions. This snapshot holds market conditions constant.
                 </p>
               </div>
             </div>
@@ -225,10 +247,10 @@ export default function MiningCalculator() {
               </h3>
               <p className="mono-label mono-label--muted">Daily totals</p>
               <dl className="ledger">
-                <div><dt><Icon name="trend" size={16} /> Daily revenue</dt><dd>{usd(r.revenue)}</dd></div>
-                <div><dt><Icon name="bolt" size={16} /> Daily hosting cost</dt><dd className="neg">{usd(-r.hosting)}</dd></div>
-                <div><dt><Icon name="coins" size={16} /> Daily pool fees</dt><dd className="neg">{usd(-r.poolFees)}</dd></div>
-                <div className="ledger__total"><dt><Icon name="arrowDiag" size={16} /> Daily profit</dt><dd>{signed(r.profit)}</dd></div>
+                <div><dt><Icon name="coins" size={18} /> Daily Revenue</dt><dd>{usd(r.revenue)}</dd></div>
+                <div><dt><Icon name="bolt" size={18} /> Daily Hosting Cost</dt><dd className="neg">{usd(-r.hosting)}</dd></div>
+                <div><dt><Icon name="receipt" size={18} /> Daily Pool Fees</dt><dd className="neg">{usd(-r.poolFees)}</dd></div>
+                <div className="ledger__total"><dt><Icon name="wrench" size={18} /> Daily Profit</dt><dd>{signed(r.profit)}</dd></div>
               </dl>
 
               <p className="mono-label mono-label--muted">Revenue distribution</p>
@@ -238,9 +260,9 @@ export default function MiningCalculator() {
                 <span className="dist-bar__net" style={{ width: `${r.shares.net}%` }} />
               </div>
               <div className="dist-legend">
-                <div><span>Hosting cost <b className="neg">{usd(r.hosting)}</b></span><small>{r.shares.hosting.toFixed(1)}% of revenue</small></div>
-                <div><span>Pool fees <b>{usd(r.poolFees)}</b></span><small>{r.shares.pool.toFixed(1)}% of revenue</small></div>
-                <div><span>Net profit <b className="pos">{usd(r.profit)}</b></span><small>{r.shares.net.toFixed(1)}% of revenue</small></div>
+                <div><span>Hosting Cost <b className="neg">{usd(r.hosting)}</b></span><small>{r.shares.hosting.toFixed(1)}% of revenue</small></div>
+                <div><span>Pool Fees <b>{usd(r.poolFees)}</b></span><small>{r.shares.pool.toFixed(1)}% of revenue</small></div>
+                <div><span>Net Profit <b className="pos">{usd(r.profit)}</b></span><small>{r.shares.net.toFixed(1)}% of revenue</small></div>
               </div>
 
               <div className="period-grid">
@@ -258,7 +280,7 @@ export default function MiningCalculator() {
                 <p className="mono-label mono-label--muted">Hardware payback snapshot</p>
                 <div className="payback__grid">
                   <div className="payback__box">
-                    <small>Equipment cost</small>
+                    <small>Equipment Cost</small>
                     <b>{usd(r.cost)}</b>
                   </div>
                   <div className="payback__box payback__box--wide">
