@@ -6405,3 +6405,41 @@ main > section { position: relative; }
   #why-mine .wm-card > .wm-frame > path:first-of-type { fill: rgba(6, 26, 30, 0.82); }
   #why-mine .wm-btn::after { background: linear-gradient(180deg, #1f6964, #134543) !important; }
 }
+
+/* =========================================================
+   Client request: every section title starts on the same left edge
+   (120px at 1920 wide, scaling with the page), and all titles are capitals.
+   ========================================================= */
+:root { --title-x: calc(120 / 19.2 * var(--vw, 1vw)); }
+h1, main h2, .wh-bar__title { text-transform: uppercase; }
+@media (min-width: 1025px) {
+  #why-mine .wm-head__main { position: relative; left: calc(-95 / 19.2 * var(--vw, 1vw)); }
+  #buy-host-mine .bhm-top__copy { left: calc(var(--title-x) - 2 / 19.2 * var(--vw, 1vw)); }
+  #budget .budget__left { position: relative; left: calc(14 / 19.2 * var(--vw, 1vw)); }
+  #miners .miners-head > div:first-child { padding-left: var(--title-x); }
+  #miners .miners-filter .segmented { left: calc(var(--title-x) - 3 / 19.2 * var(--vw, 1vw)); }
+  #why-host .wh-head { margin-left: var(--title-x); }
+  #hosting .hosting__left { left: calc(var(--title-x) - 4 / 19.2 * var(--vw, 1vw)); }
+  #repair .section-head { position: relative; left: calc(-167 / 19.2 * var(--vw, 1vw)); }
+  #calculator .section-head--center { justify-items: start; text-align: left; position: relative; left: calc(var(--title-x) - 604 / 19.2 * var(--vw, 1vw) + 0px); }
+  #faq .faq-head { position: relative; left: calc(-144 / 19.2 * var(--vw, 1vw)); }
+}
+@media (min-width: 1025px) {
+  #calculator .section-head--center { left: 0; }
+  #buy-host-mine .bhm-top__copy { left: var(--title-x); }
+  #hosting .hosting__left { left: var(--title-x); }
+}
+@media (min-width: 1025px) { #calculator .section-head--center { left: calc(-108 / 19.2 * var(--vw, 1vw)); } }
+/* capitals for every title (section variables set the case) */
+:is(#why-mine, #buy-host-mine, #budget, #miners, #why-host, #hosting, #repair, #calculator, #contact, #faq) { --title-case: uppercase; }
+:is(#why-mine, #buy-host-mine, #budget, #miners, #why-host, #hosting, #repair, #calculator, #contact, #faq) :is(h2.h-section, h2.wm-title),
+#why-mine h2.wm-title span, .hero .h-display { text-transform: uppercase !important; }
+/* hero text starts on the same left edge as every other title */
+@media (min-width: 1025px) { .hero__copy { left: var(--title-x); } }
+@media (min-width: 1025px) {
+  #why-mine h2.wm-title span { white-space: nowrap; }
+  #why-mine { --title-size: calc(66 * var(--w)); }
+  #buy-host-mine h2.h-section { white-space: nowrap; font-size: calc(58 * var(--k)); line-height: calc(62 * var(--k)); }
+  #miners h2.h-section, #repair h2.h-section, #hosting h2.h-section, #faq h2.h-section { white-space: nowrap; }
+}
+@media (min-width: 1025px) { #miners h2.h-section { font-size: calc(44 * var(--m)); line-height: calc(50 * var(--m)); } }
