@@ -6817,3 +6817,10 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   #hosting .quote-btn .icon { width: calc(26 * var(--h9)); height: calc(26 * var(--h9)); stroke-width: 2; }
   #hosting .price-card__value { font-size: calc(95 * var(--h9)); }
 }
+/* Profit panel: doc row spacing, leftover height spread evenly between blocks. */
+@media (min-width: 1025px) {
+  #calculator .calc__profit { justify-content: space-between; }
+  #calculator .calc__profit > * { margin-top: 0 !important; margin-bottom: 0 !important; }
+  #calculator .calc__profit .ledger > div { padding-top: calc(4 * var(--c)); padding-bottom: calc(4 * var(--c)); }
+  #calculator .payback { margin-top: 0; padding-top: 0; }
+}
