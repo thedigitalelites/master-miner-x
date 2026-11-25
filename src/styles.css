@@ -5806,7 +5806,7 @@ main > section { position: relative; }
 #why-host {
   --s: calc(100 * var(--vw, 1vw) / 1971);
   padding: calc(59 * var(--s)) 0 calc(24 * var(--s));
-  background: #000a0f url('../img/bg-why-host.webp') top left / 100% auto no-repeat;
+  background: #00090f url('../img/bg-why-host.webp') top left / 100% auto no-repeat;
 }
 #why-host .wh { position: relative; width: 100%; }
 .wh-bar {
@@ -6111,7 +6111,7 @@ main > section { position: relative; }
   #budget .fleet-line { margin-bottom: calc(38 * var(--b)); }
 }
 @media (min-width: 1025px) {
-  #budget { background: #011214 url('../img/bg-budget.webp') top left / 100% auto no-repeat; }
+  #budget { background: #000a0c url('../img/bg-budget.webp') top left / 100% auto no-repeat; }
 }
 
 /* =========================================================
@@ -6156,9 +6156,9 @@ main > section { position: relative; }
 
 /* section backgrounds taken from each reference (foreground removed) */
 @media (min-width: 1025px) {
-  #why-mine { background: #011214 url('../img/bg-why-mine.webp') top left / 100% auto no-repeat; }
-  #buy-host-mine { background: #02141a url('../img/bg-bhm.webp') top left / 100% auto no-repeat; }
-  #hosting { background: #010d10 url('../img/bg-hosting.webp') top left / 100% auto no-repeat; }
+  #why-mine { background: #000d10 url('../img/bg-why-mine.webp') top left / 100% auto no-repeat; }
+  #buy-host-mine { background: #010c11 url('../img/bg-bhm.webp') top left / 100% auto no-repeat; }
+  #hosting { background: #00090d url('../img/bg-hosting.webp') top left / 100% auto no-repeat; }
   #repair { background: #00090d url('../img/bg-repair.webp') top left / 100% auto no-repeat; }
   #faq { background: #010d13 url('../img/bg-faq.webp') top left / 100% auto no-repeat; }
 }
@@ -6399,7 +6399,7 @@ main > section { position: relative; }
   #hosting .price-card .check-list { margin-bottom: calc(33 * var(--h9)); }
 }
 @media (min-width: 1025px) {
-  #calculator { background: #01141a url('../img/bg-calculator.webp') top center / 100% auto no-repeat; }
+  #calculator { background: #000c10 url('../img/bg-calculator.webp') top center / 100% auto no-repeat; }
 }
 @media (min-width: 1025px) {
   #why-mine .wm-card > .wm-frame > path:first-of-type { fill: rgba(6, 26, 30, 0.82); }
