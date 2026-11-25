@@ -6006,7 +6006,7 @@ main > section { position: relative; }
 .miner-card__cart.btn { border: 1.5px solid #5ff0e2; color: #6ff2e6; box-shadow: 0 0 12px rgba(70, 227, 212, 0.45), inset 0 0 14px rgba(70, 227, 212, 0.12); }
 .miner-card__cart.btn .icon { color: #6ff2e6; }
 @media (min-width: 1025px) {
-  #miners { background: #01090c url('../img/bg-miners.webp') top left / 100% auto no-repeat; }
+  #miners { background: #000b10 url('../img/bg-miners.webp') top left / 100% auto no-repeat; }
 }
 /* Why host: third pass from the review */
 #why-host .wh-head h2.h-section {
@@ -6159,8 +6159,8 @@ main > section { position: relative; }
   #why-mine { background: #011214 url('../img/bg-why-mine.webp') top left / 100% auto no-repeat; }
   #buy-host-mine { background: #02141a url('../img/bg-bhm.webp') top left / 100% auto no-repeat; }
   #hosting { background: #010d10 url('../img/bg-hosting.webp') top left / 100% auto no-repeat; }
-  #repair { background: #010a0d url('../img/bg-repair.webp') top left / 100% auto no-repeat; }
-  #faq { background: #011419 url('../img/bg-faq.webp') top left / 100% auto no-repeat; }
+  #repair { background: #00090d url('../img/bg-repair.webp') top left / 100% auto no-repeat; }
+  #faq { background: #010d13 url('../img/bg-faq.webp') top left / 100% auto no-repeat; }
 }
 /* Budget: the reference sets the title and the fleet figures in Oxanium */
 #budget { --title-font: 'Oxanium', sans-serif; --title-weight: 500; --title-track: -0.025em; }
@@ -6683,3 +6683,12 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   .pp-earn-table td { padding: calc(13 * var(--p)) 0; }
 }
 .pp-photo:not(.is-exact) img { mask-image: radial-gradient(ellipse 48% 46% at 50% 50%, #000 62%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 48% 46% at 50% 50%, #000 62%, transparent 100%); }
+
+/* Footer text colours sampled from the design. */
+.site-footer .footer-panel__title { color: rgb(88, 210, 219); }
+.site-footer .footer-panel__cols a { color: rgb(80, 152, 157); }
+.site-footer .footer-panel__cols a:hover { color: rgb(88, 210, 219); }
+.site-footer .footer-panel__brand .muted { color: rgb(115, 166, 173); }
+.site-footer .footer-panel__brand .mono { color: rgb(110, 157, 162); }
+.site-footer .footer-bottom p:first-child { color: rgb(100, 133, 139); }
+.site-footer .footer-bottom__links a { color: rgb(97, 149, 155); }
