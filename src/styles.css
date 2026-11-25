@@ -6524,3 +6524,13 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
   .hero__media { right: calc(60 * var(--h)) !important; }
 }
 @media (min-width: 1025px) { .hero .h-display { font-size: calc(57 * var(--h)); line-height: calc(70 * var(--h)); letter-spacing: 0.005em; margin-bottom: calc(10 * var(--h)); } }
+.chart__line--draw { animation: chart-draw 1.8s cubic-bezier(0.5, 0, 0.2, 1) both; }
+/* chart line: dashes only while drawing in (a dash pattern on a non-scaling
+   stroke can leave gaps in Chrome once the drawing is finished) */
+.chart__line, .chart__line--draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+.chart__line--draw { animation: chart-draw-in 1.8s cubic-bezier(0.5, 0, 0.2, 1); }
+@keyframes chart-draw-in {
+  from { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  99.9% { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  to { stroke-dasharray: none; stroke-dashoffset: 0; }
+}

@@ -230,12 +230,10 @@ export function useMotion() {
     // Every ~6s: redraw the chart line and re-grow bars that are on screen.
     const regrow = setInterval(() => {
       if (document.hidden) return;
-      document.querySelectorAll('.chart__plot').forEach((el) => inView(el) && replay(el, 'is-redraw'));
       document
         .querySelectorAll('.dist-bar, .payback__bar, .feature-card__bar, .tier-bar, .ticker__track')
         .forEach((el) => el.matches('.ticker__track') || (inView(el) && replay(el, 'is-regrow')));
     }, 6000);
-    document.querySelectorAll('.chart__plot').forEach((el) => el.classList.add('is-redraw'));
 
     // Decorative particles in the hero and travelling pulses on the background circuit.
     const deco = [];

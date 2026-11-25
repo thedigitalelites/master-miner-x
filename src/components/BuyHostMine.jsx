@@ -1,4 +1,5 @@
 import { market, miners } from '../data/content.js';
+import { useSpot } from '../data/livePrice.js';
 import { num } from '../lib/mining.js';
 import { Hud, Eyebrow, chamfer, rounded } from './Hud.jsx';
 import Icon from './Icon.jsx';
@@ -105,6 +106,7 @@ function DashboardMock() {
 }
 
 export default function BuyHostMine() {
+  const spot = useSpot(market.spotPrice);
   return (
     <section className="section" id="buy-host-mine">
       <div className="container">
@@ -135,13 +137,13 @@ export default function BuyHostMine() {
               </Hud>
               <Hud className="stat-card" shape={roundShape(14, 'url(#bhm-stat-fill)')}>
                 <p className="stat-card__label">Spot Bitcoin price</p>
-                <p className="stat-card__value">${num(market.spotPrice)}</p>
+                <p className="stat-card__value">${num(spot)}</p>
                 <p className="stat-card__note">Live market price, updated on every load.</p>
               </Hud>
             </div>
           </div>
           <Hud className="bhm-top__chart" shape={roundShape(16, 'rgba(6, 17, 20, 0.72)')}>
-            <PriceChart end={market.spotPrice} />
+            <PriceChart end={spot} />
           </Hud>
         </div>
 

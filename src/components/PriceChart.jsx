@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { fetchHistory } from '../data/livePrice.js';
 
 const RANGES = {
   '24H': { points: 260, vol: 0.0045, from: '24 hours ago', seed: 7 },
@@ -18,11 +19,29 @@ function series({ points, vol, seed }, end) {
 
 export default function PriceChart({ end = 64182 }) {
   const [range, setRange] = useState('24H');
+  const [live, setLive] = useState({});
+  const [drawKey, setDrawKey] = useState(0);
+  const plotRef = useRef(null);
+
+  // Load real history for the selected range; refresh 24H every minute while visible.
+  useEffect(() => {
+    let alive = true;
+    const load = (force) => fetchHistory(range, { force }).then((d) => {
+      if (alive && d && d.length > 5) setLive((m) => ({ ...m, [range]: d.map((p) => p[1]) }));
+    });
+    load(false);
+    let timer;
+    if (range === '24H') timer = setInterval(() => { if (!document.hidden) load(true); }, 60000);
+    return () => { alive = false; clearInterval(timer); };
+  }, [range]);
+
+  // Play the draw-in only on first load and on a range change.
+  useEffect(() => { setDrawKey((k) => k + 1); }, [range]);
   const W = 640;
   const H = 260;
 
   const { line, area, max, min, endY } = useMemo(() => {
-    const data = series(RANGES[range], end);
+    const data = live[range] || series(RANGES[range], end);
     const max = Math.max(...data);
     const min = Math.min(...data);
     const pad = (max - min) * 0.12 || 1;
@@ -36,7 +55,7 @@ export default function PriceChart({ end = 64182 }) {
       min,
       endY: y(data[data.length - 1]) / H,
     };
-  }, [range, end]);
+  }, [range, end, live]);
 
   const k = (v) => `${(v / 1000).toFixed(1)}K`;
 
@@ -70,7 +89,7 @@ export default function PriceChart({ end = 64182 }) {
             <line key={g} x1="0" x2={W} y1={H * g} y2={H * g} className="chart__grid" />
           ))}
           <path d={area} fill="url(#chartFill)" />
-          <path d={line} className="chart__line" vectorEffect="non-scaling-stroke" pathLength="1" />
+          <path key={drawKey} d={line} className="chart__line chart__line--draw" vectorEffect="non-scaling-stroke" pathLength="1" />
         </svg>
         <span className="chart__ping" style={{ top: `${endY * 100}%` }} aria-hidden="true" />
         <span className="chart__axis chart__axis--max">{k(max)}</span>

@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { market, miners } from '../data/content.js';
 import { btcPerDay, usd, num, DAYS } from '../lib/mining.js';
 import { Hud, OctBadge, chamfer, rounded } from './Hud.jsx';
+import { useEffect } from 'react';
+import { fetchSpot } from '../data/livePrice.js';
 import Icon from './Icon.jsx';
 
 const calcMiners = miners.filter((m) => !m.scrypt);
@@ -93,6 +95,8 @@ export default function MiningCalculator() {
   const [setup, setSetup] = useState(setupDefaults());
   const [mkt, setMkt] = useState(marketDefaults());
   const [showMath, setShowMath] = useState(false);
+  const refreshMarket = () => fetchSpot().then((v) => v && setMkt((m) => ({ ...m, btcPrice: Math.round(v * 100) / 100 })));
+  useEffect(() => { refreshMarket(); }, []);
 
   const miner = calcMiners.find((m) => m.id === setup.minerId);
   const set = (k) => (v) => setSetup((s) => ({ ...s, [k]: v }));
@@ -221,7 +225,7 @@ export default function MiningCalculator() {
             </div>
 
             <div className="btn-row btn-row--split">
-              <Hud as="button" className="calc-btn" shape={btnShape} onClick={() => setMkt(marketDefaults())}>
+              <Hud as="button" className="calc-btn" shape={btnShape} onClick={() => { setMkt(marketDefaults()); refreshMarket(); }}>
                 <Icon name="refresh" size={20} /> Refresh
               </Hud>
               <Hud

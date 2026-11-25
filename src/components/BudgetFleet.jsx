@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { market, miners } from '../data/content.js';
 import { btcPerDay, minerMonthly, num, DAYS } from '../lib/mining.js';
 import { Hud, Eyebrow, rounded } from './Hud.jsx';
+import { useSpot } from '../data/livePrice.js';
 import Icon from './Icon.jsx';
 
 const PRESETS = [25000, 50000, 100000, 250000, 500000, 1000000];
@@ -23,13 +24,13 @@ function fleetFor(miner, budget) {
   return { miner, qty, unit };
 }
 
-function fleetNumbers({ miner, qty, unit }) {
+function fleetNumbers({ miner, qty, unit }, btcPrice = market.btcPrice) {
   const btcMonth = btcPerDay({ hashrateTh: miner.hashrate }) * DAYS * qty;
   const { costs } = minerMonthly(miner, RATE);
   return {
     btcMonth,
     atHigh: btcMonth * market.btcHigh12m,
-    atSpot: btcMonth * market.btcPrice,
+    atSpot: btcMonth * btcPrice,
     hosting: costs * qty,
     total: unit * qty,
     hashrate: miner.hashrate * qty,
@@ -84,7 +85,8 @@ export default function BudgetFleet() {
   );
 
   const best = { ...ranked[0], qty: qtyOverride ?? ranked[0].qty };
-  const n = fleetNumbers(best);
+  const spot = useSpot(market.btcPrice);
+  const n = fleetNumbers(best, spot);
   const others = ranked.slice(1);
 
   const pick = (v) => {
@@ -169,7 +171,7 @@ export default function BudgetFleet() {
             </p>
             <ul className="fleet-card__notes">
               <li>at the 12-month high of ${num(market.btcHigh12m)} <Icon name="info" size={14} className="fleet-card__info" /></li>
-              <li>≈ ${num(n.atSpot)} at today’s ${num(market.btcPrice)}</li>
+              <li>≈ ${num(n.atSpot)} at today’s ${num(spot)}</li>
               <li>{n.btcMonth.toFixed(4)} BTC a month</li>
             </ul>
             <hr className="rule-dashed" />
