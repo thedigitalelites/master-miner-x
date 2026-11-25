@@ -82,7 +82,7 @@ export default function Hosting() {
           </p>
           <p className="muted">Starting from</p>
           <p className="price-card__value">
-            $0.066 <span>/kWh</span>
+            <b className="price-card__num">$0.066</b> <span>/kWh</span>
           </p>
           <hr className="rule-dot" />
           <p className="muted">Package includes</p>

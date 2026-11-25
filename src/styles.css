@@ -6754,3 +6754,45 @@ h1, main h2, .wh-bar__title { text-transform: uppercase; }
 }
 /* Step numbers: the design outlines a semibold Saira, not a light one. */
 #buy-host-mine .step__num { font-family: 'Saira', sans-serif; font-weight: 500; font-stretch: 100%; text-shadow: 0 0 10px rgba(70, 227, 212, 0.25); letter-spacing: 0.01em; -webkit-text-stroke: 1.5px #4fe2d4; color: transparent; }
+/* Budget note lines: the design sets these in Inter, not Oxanium. */
+@media (min-width: 1025px) { #budget .fleet-card__notes { font-family: 'Inter', sans-serif; font-weight: 400; font-size: calc(17.9 * var(--b)); letter-spacing: 0; } }
+@media (min-width: 1025px) {
+  #budget .chip { font-size: calc(15 * var(--b)); padding-left: calc(20 * var(--b)); padding-right: calc(20 * var(--b)); }
+  #budget .stock-card__count .accent { font-weight: 400; font-size: calc(48 * var(--b)); }
+  #budget .stock-card .caps-btn { font-weight: 400; }
+  #budget .stepper output { font-family: 'Saira', sans-serif; font-weight: 400; }
+  #budget .token-card__badge { font-family: 'Oxanium', sans-serif; font-size: calc(16 * var(--b)); }
+}
+/* Number faces matched to the design, second sweep. */
+@media (min-width: 1025px) {
+  #hosting .price-card__value { font-family: 'Oxanium', sans-serif; font-weight: 700; letter-spacing: 0; font-size: calc(90 * var(--h9)); }
+  #hosting .price-card__num { display: inline-block; font-weight: 600; color: #93f3ec; margin-top: calc(-14 * var(--h9)); transform: scaleX(1.12); transform-origin: left center; margin-right: 0.38em; }
+  #hosting .price-card__value span { font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 0; font-size: calc(22 * var(--h9)); }
+  #miners .tier-bar button { font-weight: 500; color: #c9d3d4; }
+  #miners .tier-bar button b { font-weight: 600; color: #e4ecec; }
+  #miners .tier-bar button.is-active, #miners .tier-bar button.is-active b { color: #5ff0e2; }
+}
+/* Step numbers: outlined Exo 2, thin dim line as in the design. */
+#buy-host-mine .step__num { font-family: 'Exo 2', sans-serif; font-weight: 600; font-stretch: 100%; letter-spacing: normal; -webkit-text-stroke: 1px rgba(79, 226, 212, 0.85); color: transparent; text-shadow: 0 0 6px rgba(70, 227, 212, 0.18); }
+@media (min-width: 1025px) {
+  #buy-host-mine .step__num { font-size: calc(97 * var(--k)); }
+  /* Budget buttons per the design. */
+  #budget .caps-btn--solid, #budget .caps-btn--lg { border-radius: 999px; height: calc(74 * var(--b)); letter-spacing: 0.06em; }
+  #budget .caps-btn--solid {
+    background: linear-gradient(90deg, rgb(91, 225, 222), rgb(39, 175, 170));
+    border: 1px solid; border-color: rgb(147, 201, 201) rgb(128, 200, 198) rgb(128, 200, 198);
+    color: #031414; font-weight: 500; justify-content: flex-start; padding-left: calc(18 * var(--b)); gap: calc(16 * var(--b));
+    box-shadow: 0 0 calc(18 * var(--b)) rgba(70, 227, 212, 0.45);
+  }
+  #budget .caps-btn--solid .icon { width: calc(42 * var(--b)); height: calc(42 * var(--b)); stroke-width: 1.3; color: rgb(234, 252, 253); }
+  #budget .caps-btn--lg { color: rgb(93, 190, 184); font-weight: 400; font-size: calc(18.5 * var(--b)); border: 1.5px solid rgba(96, 214, 202, 0.75); }
+  #budget .caps-btn--lg .icon { width: calc(30 * var(--b)); height: calc(30 * var(--b)); color: rgb(93, 190, 184); }
+  #budget .stock-card .caps-btn { color: rgb(50, 190, 182); font-weight: 400; letter-spacing: 0.06em; }
+}
+@media (min-width: 1025px) {
+  #budget .caps-btn--solid { font-size: calc(17 * var(--b)); }
+  #budget .caps-btn--lg { gap: calc(34 * var(--b)); border-color: rgba(110, 236, 224, 0.85); box-shadow: 0 0 calc(12 * var(--b)) rgba(70, 227, 212, 0.35); }
+  #budget .caps-btn--lg .icon { width: calc(36 * var(--b)); height: calc(36 * var(--b)); }
+}
+#calculator .payback .payback__scale span { font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0; color: #b4c0c1; }
+#calculator .dist-legend b:not(.neg):not(.pos) { font-weight: 400; color: #c3cdcd; }
