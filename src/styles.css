@@ -6401,3 +6401,7 @@ main > section { position: relative; }
 @media (min-width: 1025px) {
   #calculator { background: #01141a url('../img/bg-calculator.webp') top center / 100% auto no-repeat; }
 }
+@media (min-width: 1025px) {
+  #why-mine .wm-card > .wm-frame > path:first-of-type { fill: rgba(6, 26, 30, 0.82); }
+  #why-mine .wm-btn::after { background: linear-gradient(180deg, #1f6964, #134543) !important; }
+}
